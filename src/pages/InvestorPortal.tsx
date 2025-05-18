@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FileText, Download, TrendingUp, PieChart, Calendar, Bell } from 'lucide-react';
 
 const InvestorPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // PDF files paths
+  const pdfFiles = {
+    halfYearlyReport: '/pdf_links/HALF_YEARLY_RESULTS_IST_HALF_FY_2024-25.pdf',
+    annualReport: '/pdf_links/ANNUAL_REPORT_KIZI_31.03.2024.pdf',
+    whistleBlowerPolicy: '/pdf_links/Whistle_Blower_Policy_57e5872e-49ce-4ebe-8c30-bf619aed5dd9.pdf',
+    codeForIndependentDirectors: '/pdf_links/Code_for_Independet_Director_2ed8caea-60d8-4179-8ca4-3f0661e2ce7b.pdf',
+    nominationPolicy: '/pdf_links/Nomination_Remuneration_Policy_c12b1c82-b394-471f-b07e-5072faa24ce1.pdf',
+    insiderTradingCode: '/pdf_links/Code_of_Internal_Procedure_Conduct_for_Prevention_of_Insider_Trading_13176027-33ae-4bdb-a146-96c44b8eac32.pdf',
+    materialEventsPolicy: '/pdf_links/Draft_Policy_on_Determing_the_Material_Events_9c0bb525-0fb0-43d7-8d64-9c5e04934efd.pdf',
+    relatedPartyTransactionPolicy: '/pdf_links/Related_Party_Transaction_Policy_2ebc94d8-4f02-48d9-8055-f709eb3f05da.pdf',
+    upsiDisclosurePolicy: '/pdf_links/Policy_on_Disclosure_of_UPSI_959006c6-f462-4347-9e10-062e13373845.pdf',
+    familiarizationProgram: '/pdf_links/Familarization_Programme_for_ID_19c92f5c-d18a-4fe0-86e0-cd4bf5100955.pdf',
+    boardDiversityPolicy: '/pdf_links/Policy_on_Board_diversity_bea25369-2acf-49fe-9f26-251596009aef.pdf',
+    codeOfConduct: '/pdf_links/Code_of_conduct_da798e77-4a6a-4ce4-9d60-cf4f05307ae7.pdf',
+    performanceEvaluationPolicy: '/pdf_links/Performance_Evaluation_Policy_964831f3-af8b-47be-8b9f-862a931ac7ef.pdf'
+  };
 
   const financialReports = [
     { name: 'Annual Report 2023', date: 'Mar 15, 2024', size: '4.2 MB' },
@@ -15,6 +34,38 @@ const InvestorPortal: React.FC = () => {
     { title: 'New Sustainable Manufacturing Facility', date: 'Mar 20, 2024', type: 'Press Release' },
     { title: 'Board Meeting Notice', date: 'Mar 10, 2024', type: 'Regulatory' },
   ];
+
+  useEffect(() => {
+    const loadContent = async () => {
+      try {
+        setLoading(true);
+        // Simulate loading content
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load content. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    loadContent();
+  }, [activeTab]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-red-600">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
@@ -73,25 +124,25 @@ const InvestorPortal: React.FC = () => {
                   <div className="bg-white p-6 rounded-lg shadow-md">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg font-medium text-gray-900">Stock Price</h3>
-                      <TrendingUp className="h-5 w-5 text-success-500" />
+                      <TrendingUp className="h-5 w-5 text-green-500" />
                     </div>
-                    <p className="text-3xl font-bold text-primary-900 mt-2">₹245.60</p>
-                    <p className="text-sm text-success-600">+2.5% today</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">₹245.60</p>
+                    <p className="text-sm text-green-600">+2.5% today</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-md">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg font-medium text-gray-900">Market Cap</h3>
-                      <PieChart className="h-5 w-5 text-primary-500" />
+                      <PieChart className="h-5 w-5 text-blue-500" />
                     </div>
-                    <p className="text-3xl font-bold text-primary-900 mt-2">₹2.4B</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">₹2.4B</p>
                     <p className="text-sm text-gray-500">As of today</p>
                   </div>
                   <div className="bg-white p-6 rounded-lg shadow-md">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg font-medium text-gray-900">52W High</h3>
-                      <TrendingUp className="h-5 w-5 text-primary-500" />
+                      <TrendingUp className="h-5 w-5 text-blue-500" />
                     </div>
-                    <p className="text-3xl font-bold text-primary-900 mt-2">₹268.30</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-2">₹268.30</p>
                     <p className="text-sm text-gray-500">Last month</p>
                   </div>
                 </div>
@@ -110,7 +161,13 @@ const InvestorPortal: React.FC = () => {
                               <p className="text-sm text-gray-500">{report.date}</p>
                             </div>
                           </div>
-                          <button className="flex items-center text-primary-600 hover:text-primary-800">
+                          <button 
+                            className="flex items-center text-blue-600 hover:text-blue-800"
+                            onClick={() => {
+                              // Handle download
+                              console.log(`Downloading ${report.name}`);
+                            }}
+                          >
                             <Download className="h-5 w-5 mr-1" />
                             <span className="text-sm">{report.size}</span>
                           </button>
@@ -134,7 +191,7 @@ const InvestorPortal: React.FC = () => {
                               <p className="text-sm text-gray-500">{announcement.date}</p>
                             </div>
                           </div>
-                          <span className="text-sm px-3 py-1 rounded-full bg-primary-50 text-primary-700">
+                          <span className="text-sm px-3 py-1 rounded-full bg-blue-50 text-blue-700">
                             {announcement.type}
                           </span>
                         </div>
@@ -148,68 +205,30 @@ const InvestorPortal: React.FC = () => {
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Financial Reports</h2>
                 <div className="space-y-6">
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Half Yearly Report 2024</h3>
-                          <p className="text-sm text-gray-500">Published: May 17, 2024</p>
+                  {Object.entries(pdfFiles).slice(0, 2).map(([key, url], index) => (
+                    <div key={index} className="border rounded-lg p-4 hover:bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">
+                              {key === 'halfYearlyReport' ? 'Half Yearly Report 2024' : 'Annual Report 2024'}
+                            </h3>
+                            <p className="text-sm text-gray-500">Published: May 17, 2024</p>
+                          </div>
                         </div>
+                        <a 
+                          href={url}
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
                       </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1MzwwORRCBtIXI2CzST7BGxmuDh0DHu2H/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
                     </div>
-                  </div>
-
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Annual Report 2024</h3>
-                          <p className="text-sm text-gray-500">Published: May 17, 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1Px8aiRzyqwP7_AtIiei5QD4boC3bFdXR/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF </span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Q2 2023 Financial Report</h3>
-                          <p className="text-sm text-gray-500">Published: Jul 15, 2023</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="/reports/q2-2023-report.pdf" 
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Download className="h-5 w-5 mr-1" />
-                        <span>Download PDF</span>
-                      </a>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             )}
@@ -217,8 +236,10 @@ const InvestorPortal: React.FC = () => {
             {activeTab === 'calendar' && (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Investor Calendar</h2>
-                {/* Calendar content */}
-                <p className="text-gray-600">Calendar section content will go here</p>
+                <div className="text-gray-600">
+                  <p>No events scheduled at this time.</p>
+                  <p>Check back later for upcoming investor events and important dates.</p>
+                </div>
               </div>
             )}
 
@@ -226,209 +247,40 @@ const InvestorPortal: React.FC = () => {
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Corporate Policies</h2>
                 <div className="space-y-6">
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Whistle Blower Policy</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Jan 2024</p>
+                  {Object.entries({
+                    'Whistle Blower Policy': pdfFiles.whistleBlowerPolicy,
+                    'Code for Independent Directors': pdfFiles.codeForIndependentDirectors,
+                    'Nomination and Remuneration Policy': pdfFiles.nominationPolicy,
+                    'Code of Prevention of Insider Trading': pdfFiles.insiderTradingCode,
+                    'Draft Policy on Determining Material Events': pdfFiles.materialEventsPolicy,
+                    'Related Party Transaction Policy': pdfFiles.relatedPartyTransactionPolicy,
+                    'Policy on Disclosure of UPSI': pdfFiles.upsiDisclosurePolicy,
+                    'Familiarization Program for Independent Directors': pdfFiles.familiarizationProgram,
+                    'Policy on Board Diversity': pdfFiles.boardDiversityPolicy,
+                    'Code of Conduct': pdfFiles.codeOfConduct,
+                    'Performance Evaluation Policy': pdfFiles.performanceEvaluationPolicy
+                  }).map(([title, pdfUrl], index) => (
+                    <div key={index} className="border rounded-lg p-4 hover:bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">{title}</h3>
+                            <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
+                          </div>
                         </div>
+                        <a 
+                          href={pdfUrl}
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
                       </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1xvEYZ3ITDwKBLGHsi0gWv4dx59ZAfHGY/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
                     </div>
-                  </div>
-
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Code for Independent Directors</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Dec 2023</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1RHnxbz6iHnlUbI2FiXSyWdL3XOdknV6U/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Nomination and Remuneration Policy</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Mar 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1nvEXXOLRz5FsgDP5lT_Ll3KWtzb9JLmR/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Code of Prevention of Insider Trading</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1wffvJB9sqTFhTUYfM_X9l3Nvrku9iGwh/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Draft Policy on Determing the Material Events</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1XQ0FMWQXskXgAgHRFNF59P-_nVtKd732/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Policy on Disclosure of UPSI</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/16B8PlAVyQ7H0HlwaK86cvkilJFhq96ec/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Familiarization Program for Independent Directors</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/17ypl2gJ0gL9_jT6kRbZ07lH4kVigJsxC/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Policy on Board diversity</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1AkJ-O5SUZlDruUBbaLJ6EikXhmynr_eB/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Code of conduct</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a 
-                        href="https://drive.google.com/file/d/1QVNXzovaQyZOrb6vDnncdGOEbWV2Rxtr/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="border rounded-lg p-4 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                        <div>
-                          <h3 className="font-medium text-gray-900">Performance Evaluation Policy</h3>
-                          <p className="text-sm text-gray-500">Last Updated: Feb 2024</p>
-                        </div>
-                      </div>
-                      <a  
-                        href="https://drive.google.com/file/d/1vKzntQlAm_WMncEDt3XaG7eEVQrvA1jt/preview"
-                        className="flex items-center text-primary-600 hover:text-primary-800"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FileText className="h-5 w-5 mr-1" />
-                        <span>View PDF</span>
-                      </a>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             )}

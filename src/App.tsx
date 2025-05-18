@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
@@ -8,42 +9,35 @@ import LeadershipSection from './sections/LeadershipSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './components/Footer';
 import InvestorPortal from './pages/InvestorPortal';
+import Contact from './pages/Contact';
 
-function App() {
-  const [showPortal, setShowPortal] = React.useState(false);
-
-  useEffect(() => {
-    // Update page title
-    document.title = 'Kizi Apparels - Investor Relations';
-    
-    // Check if we should show the portal
-    const hash = window.location.hash;
-    setShowPortal(hash === '#investor-portal');
-
-    // Listen for hash changes
-    const handleHashChange = () => {
-      setShowPortal(window.location.hash === '#investor-portal');
-    };
-    
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  if (showPortal) {
-    return <InvestorPortal />;
-  }
-
+const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
+    <>
       <HeroSection />
       <AboutSection />
       <PerformanceSection />
       <OpportunitiesSection />
       <LeadershipSection />
       <ContactSection />
-      <Footer />
-    </div>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-white">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/investor-portal" element={<InvestorPortal />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

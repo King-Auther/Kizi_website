@@ -8,8 +8,11 @@ const InvestorPortal: React.FC = () => {
 
   // PDF files paths
   const pdfFiles = {
-    halfYearlyReport: '/pdf_links/HALF_YEARLY_RESULTS_IST_HALF_FY_2024-25.pdf',
-    annualReport: '/pdf_links/ANNUAL_REPORT_KIZI_31.03.2024.pdf',
+    prospectus: '/pdf_links/Prospectus.pdf',
+    reportSep2024: '/pdf_links/HALF_YEARLY_RESULTS_IST_HALF_FY_2024-25.pdf',
+    reportMarch2024: '/pdf_links/ANNUAL_REPORT_KIZI_31.03.2024.pdf',
+    reportJune2023: '/pdf_links/For The Period Ended 30 June, 2023.pdf',
+    reportMarch2023: '/pdf_links/For The Period Ended 31 March, 2023.pdf',
     whistleBlowerPolicy: '/pdf_links/Whistle_Blower_Policy_57e5872e-49ce-4ebe-8c30-bf619aed5dd9.pdf',
     codeForIndependentDirectors: '/pdf_links/Code_for_Independet_Director_2ed8caea-60d8-4179-8ca4-3f0661e2ce7b.pdf',
     nominationPolicy: '/pdf_links/Nomination_Remuneration_Policy_c12b1c82-b394-471f-b07e-5072faa24ce1.pdf',
@@ -24,9 +27,30 @@ const InvestorPortal: React.FC = () => {
   };
 
   const financialReports = [
-    { name: 'Annual Report 2023', date: 'Mar 15, 2024', size: '4.2 MB' },
-    { name: 'Q4 2023 Results', date: 'Feb 1, 2024', size: '2.1 MB' },
-    { name: 'Q3 2023 Results', date: 'Nov 15, 2023', size: '1.8 MB' },
+    { 
+      name: 'For The period Ended 30th Sep 2024', 
+      date: 'September 30, 2024', 
+      size: '1.7 MB',
+      url: pdfFiles.reportSep2024
+    },
+    { 
+      name: 'For The Period Ended 31 March, 2024', 
+      date: 'March 31, 2024', 
+      size: '3.1 MB',
+      url: pdfFiles.reportMarch2024
+    },
+    { 
+      name: 'For The Period Ended 30 June, 2023', 
+      date: 'June 30, 2023', 
+      size: '20 MB',
+      url: pdfFiles.reportJune2023
+    },
+    { 
+      name: 'For The Period Ended 31 March, 2023', 
+      date: 'March 31, 2023', 
+      size: '9.9 MB',
+      url: pdfFiles.reportMarch2023
+    }
   ];
 
   const announcements = [
@@ -150,29 +174,55 @@ const InvestorPortal: React.FC = () => {
                 {/* Recent Reports */}
                 <div className="bg-white rounded-lg shadow-md">
                   <div className="p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Reports</h2>
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Financial Reports</h2>
                     <div className="space-y-4">
                       {financialReports.map((report, index) => (
-                        <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg">
+                        <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
                           <div className="flex items-center">
                             <FileText className="h-5 w-5 text-gray-400 mr-3" />
                             <div>
                               <p className="font-medium text-gray-900">{report.name}</p>
-                              <p className="text-sm text-gray-500">{report.date}</p>
+                              <p className="text-sm text-gray-500">Published: {report.date}</p>
                             </div>
                           </div>
-                          <button 
+                          <a 
+                            href={report.url}
                             className="flex items-center text-blue-600 hover:text-blue-800"
-                            onClick={() => {
-                              // Handle download
-                              console.log(`Downloading ${report.name}`);
-                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <Download className="h-5 w-5 mr-1" />
-                            <span className="text-sm">{report.size}</span>
-                          </button>
+                            <FileText className="h-5 w-5 mr-1" />
+                            <span>View PDF</span>
+                          </a>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Company Prospectus Section */}
+                <div className="bg-white rounded-lg shadow-md mt-6">
+                  <div className="p-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Prospectus</h2>
+                    <div className="border rounded-lg p-4 hover:bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">Initial Public Offering Prospectus</h3>
+                            <p className="text-sm text-gray-500">Important document containing detailed information about the company's business, financial statements, and the terms of its public offering.</p>
+                          </div>
+                        </div>
+                        <a 
+                          href={pdfFiles.prospectus}
+                          className="flex items-center text-blue-600 hover:text-blue-800 ml-4"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Clock, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Globe, User, Building2, ClipboardCheck } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
 
 const Contact: React.FC = () => {
@@ -27,6 +27,80 @@ const Contact: React.FC = () => {
               </h2>
               
               <div className="space-y-8">
+                {/* Investor Contact Section */}
+                <div className="flex items-start">
+                  <User className="h-6 w-6 text-primary-600 mt-1 mr-4" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">Investor Contact</h3>
+                    <p className="text-gray-600 mt-1">
+                      Name: Monica Jain<br />
+                      Email: Cs@kiziapparels.com
+                    </p>
+                  </div>
+                </div>
+
+                {/* Registrar and Share Transfer Agent Section */}
+                <div className="flex items-start">
+                  <Building2 className="h-6 w-6 text-primary-600 mt-1 mr-4" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">Registrar and Share Transfer Agent</h3>
+                    <div className="text-gray-600 mt-1">
+                      <p className="font-medium">Bigshare Services Private Limited</p>
+                      <p className="mt-2">
+                        Office No. S6-2, 6th Floor, Pinnacle Business Park,<br />
+                        Next to Ahura Center, Mahakali Caves Road,<br />
+                        Andheri East, Mumbai-400093
+                      </p>
+                      <div className="mt-2">
+                        <p>Tel: +91 22-62638200</p>
+                        <p>Fax: +91 22-62638299</p>
+                        <p>Website: <a href="http://www.bigshareonline.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-800">www.bigshareonline.com</a></p>
+                        <p>Email: <a href="mailto:ipo@bigshareonline.com" className="text-primary-600 hover:text-primary-800">ipo@bigshareonline.com</a></p>
+                        <p>Investor Grievance Email: <a href="mailto:investor@bigshareonline.com" className="text-primary-600 hover:text-primary-800">investor@bigshareonline.com</a></p>
+                        <p>Contact Person: Asif Sayyed</p>
+                        <p>SEBI Reg. No.: INR000001385</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Statutory Auditor Section */}
+                <div className="flex items-start">
+                  <ClipboardCheck className="h-6 w-6 text-primary-600 mt-1 mr-4" />
+                  <div>
+                    <h3 className="font-medium text-gray-900">Statutory Auditor</h3>
+                    <div className="text-gray-600 mt-1">
+                      <p className="font-medium">D G M S & Co.</p>
+                      <p className="text-sm">Chartered Accountants</p>
+                      
+                      <div className="mt-3">
+                        <p className="font-medium">Head Office:</p>
+                        <p className="mt-1">
+                          217/218, Manek Center, P.N Marg,<br />
+                          Jamnagar, Gujarat-361008<br />
+                          India
+                        </p>
+                      </div>
+
+                      <div className="mt-3">
+                        <p className="font-medium">Branch Office:</p>
+                        <p className="mt-1">
+                          B-15/16, 5th Floor, B Wing,<br />
+                          Shree Siddhivinayak Plaza,<br />
+                          Veera Desai Industrial Estate,<br />
+                          Next to T Series Business Park,<br />
+                          Andheri West, Mumbai<br />
+                          Maharashtra- 400053
+                        </p>
+                      </div>
+
+                      <div className="mt-2">
+                        <p>Email: <a href="mailto:dgmsco.jam@gmail.com" className="text-primary-600 hover:text-primary-800">dgmsco.jam@gmail.com</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex items-start">
                   <MapPin className="h-6 w-6 text-primary-600 mt-1 mr-4" />
                   <div>

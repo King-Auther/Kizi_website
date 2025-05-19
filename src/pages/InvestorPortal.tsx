@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Download, TrendingUp, PieChart, Calendar, Bell } from 'lucide-react';
+import { FileText, Download, TrendingUp, PieChart, Calendar, Bell, BarChart2 } from 'lucide-react';
 
 const InvestorPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -8,6 +8,7 @@ const InvestorPortal: React.FC = () => {
 
   // PDF files paths
   const pdfFiles = {
+    shareholdingPattern: '/shareholding_exl/shareholding_exl/SHAREHOLDING_PATTERN_AS_ON_31.12.2024.pdf',
     prospectus: '/pdf_links/Prospectus.pdf',
     reportSep2024: '/pdf_links/HALF_YEARLY_RESULTS_IST_HALF_FY_2024-25.pdf',
     reportMarch2024: '/pdf_links/ANNUAL_REPORT_KIZI_31.03.2024.pdf',
@@ -118,6 +119,15 @@ const InvestorPortal: React.FC = () => {
                   Reports
                 </button>
                 <button
+                  onClick={() => setActiveTab('shareholding')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'shareholding' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <BarChart2 className="h-5 w-5 mr-3" />
+                  Shareholding Pattern
+                </button>
+                <button
                   onClick={() => setActiveTab('calendar')}
                   className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
                     activeTab === 'calendar' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
@@ -171,34 +181,7 @@ const InvestorPortal: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Recent Reports */}
-                <div className="bg-white rounded-lg shadow-md">
-                  <div className="p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Financial Reports</h2>
-                    <div className="space-y-4">
-                      {financialReports.map((report, index) => (
-                        <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
-                          <div className="flex items-center">
-                            <FileText className="h-5 w-5 text-gray-400 mr-3" />
-                            <div>
-                              <p className="font-medium text-gray-900">{report.name}</p>
-                              <p className="text-sm text-gray-500">Published: {report.date}</p>
-                            </div>
-                          </div>
-                          <a 
-                            href={report.url}
-                            className="flex items-center text-blue-600 hover:text-blue-800"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <FileText className="h-5 w-5 mr-1" />
-                            <span>View PDF</span>
-                          </a>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                
 
                 {/* Company Prospectus Section */}
                 <div className="bg-white rounded-lg shadow-md mt-6">
@@ -215,6 +198,33 @@ const InvestorPortal: React.FC = () => {
                         </div>
                         <a 
                           href={pdfFiles.prospectus}
+                          className="flex items-center text-blue-600 hover:text-blue-800 ml-4"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* List of Creditors Section */}
+                <div className="bg-white rounded-lg shadow-md mt-6">
+                  <div className="p-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">List of Creditors</h2>
+                    <div className="border rounded-lg p-4 hover:bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">List of Creditors PDF</h3>
+                            <p className="text-sm text-gray-500">Download the latest list of creditors in PDF format.</p>
+                          </div>
+                        </div>
+                        <a 
+                          href="/creditors/list_of_creditors.pdf"
                           className="flex items-center text-blue-600 hover:text-blue-800 ml-4"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -252,23 +262,21 @@ const InvestorPortal: React.FC = () => {
               </div>
             )}
             {activeTab === 'reports' && (
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Financial Reports</h2>
-                <div className="space-y-6">
-                  {Object.entries(pdfFiles).slice(0, 2).map(([key, url], index) => (
-                    <div key={index} className="border rounded-lg p-4 hover:bg-gray-50">
-                      <div className="flex items-center justify-between">
+              <div className="bg-white rounded-lg shadow-md">
+                <div className="p-6">
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Financial Reports</h2>
+                  <div className="space-y-4">
+                    {financialReports.map((report, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
                         <div className="flex items-center">
-                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
                           <div>
-                            <h3 className="font-medium text-gray-900">
-                              {key === 'halfYearlyReport' ? 'Half Yearly Report 2024' : 'Annual Report 2024'}
-                            </h3>
-                            <p className="text-sm text-gray-500">Published: May 17, 2024</p>
+                            <p className="font-medium text-gray-900">{report.name}</p>
+                            <p className="text-sm text-gray-500">Published: {report.date}</p>
                           </div>
                         </div>
                         <a 
-                          href={url}
+                          href={report.url}
                           className="flex items-center text-blue-600 hover:text-blue-800"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -277,8 +285,220 @@ const InvestorPortal: React.FC = () => {
                           <span>View PDF</span>
                         </a>
                       </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'shareholding' && (
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg shadow-md">
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="text-xl font-semibold text-gray-900">Shareholding Pattern</h2>
+                      <a
+                        href="/shareholding_exl/shareholding_exl/SHAREHOLDING_PATTERN_AS_ON_31.12.2024.pdf"
+                        className="flex items-center text-blue-600 hover:text-blue-800 text-xs font-semibold"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                        type="application/pdf"
+                      >
+                        <Download className="h-5 w-5 mr-1" />
+                        <span>Download PDF</span>
+                      </a>
                     </div>
-                  ))}
+                    <div className="overflow-x-auto">
+                      <table className="min-w-max border text-xs">
+                        <thead>
+                          <tr className="bg-gray-50">
+                            <th rowSpan={2} className="px-2 py-2 border">Category<br/>(I)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">Category of shareholder<br/>(II)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">No. of Shareholders<br/>(III)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">No. of fully paid up equity Share held<br/>(IV)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">No. of partly paid-up equity Share held<br/>(V)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">No. of shares underlying Depository Receipts<br/>(VI)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">Total no. shares held (VII) = (IV)+(V)+(VI)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">Shareholding as a % of total no. of shares (calculated as per SCRR, 1957) (VIII) As a % of (A+B+C2)</th>
+                            <th colSpan={3} className="px-2 py-2 border">Number of Voting Rights held in each class of securities (IX)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">No. of Shares Underlying Outstanding convertible securities (including Warrants) (X)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">Shareholding as a % assuming full conversion of convertible securities (as a % of diluted share capital) (XI) = (VII)+(X) As a % of (A+B+C2)</th>
+                            <th colSpan={2} className="px-2 py-2 border">Number of Locked in shares (XII)</th>
+                            <th colSpan={2} className="px-2 py-2 border">Number of Shares pledged or otherwise encumbered (XIII)</th>
+                            <th rowSpan={2} className="px-2 py-2 border">Number of equity shares held in dematerialized form (XIV)</th>
+                          </tr>
+                          <tr className="bg-gray-50">
+                            <th className="px-2 py-2 border">Class Equity x</th>
+                            <th className="px-2 py-2 border">Class Others y</th>
+                            <th className="px-2 py-2 border">Total</th>
+                            <th className="px-2 py-2 border">No. (a)</th>
+                            <th className="px-2 py-2 border">As a % of total shares held (b)</th>
+                            <th className="px-2 py-2 border">No. (a)</th>
+                            <th className="px-2 py-2 border">As a % of total shares held (b)</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                          {/* Promoter & Promoter Group */}
+                          <tr>
+                            <td className="border px-2 py-1">(A)</td>
+                            <td className="border px-2 py-1">Promoter & Promoter Group</td>
+                            <td className="border px-2 py-1">3</td>
+                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">56.3459</td>
+                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">56.3459</td>
+                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">100.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">4,405,800</td>
+                          </tr>
+                          {/* Public */}
+                          <tr>
+                            <td className="border px-2 py-1">(B)</td>
+                            <td className="border px-2 py-1">Public</td>
+                            <td className="border px-2 py-1">303</td>
+                            <td className="border px-2 py-1">3,413,400</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">3,413,400</td>
+                            <td className="border px-2 py-1">43.6541</td>
+                            <td className="border px-2 py-1">3,413,400</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">3,413,400</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">43.6541</td>
+                            <td className="border px-2 py-1">755,400</td>
+                            <td className="border px-2 py-1">22.1304</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">3,413,400</td>
+                          </tr>
+                          {/* Non Promoter-Non Public */}
+                          <tr>
+                            <td className="border px-2 py-1">(C)</td>
+                            <td className="border px-2 py-1">Non Promoter-Non Public</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                          </tr>
+                          {/* Shares underlying DRs */}
+                          <tr>
+                            <td className="border px-2 py-1">(C1)</td>
+                            <td className="border px-2 py-1">Shares underlying DRs</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">NA</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">NA</td>
+                            <td className="border px-2 py-1">0</td>
+                          </tr>
+                          {/* Shares held by Employee Trusts */}
+                          <tr>
+                            <td className="border px-2 py-1">(C2)</td>
+                            <td className="border px-2 py-1">Shares held by Employee Trusts</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">NA</td>
+                            <td className="border px-2 py-1">0</td>
+                          </tr>
+                          {/* Total */}
+                          <tr className="bg-gray-100 font-semibold">
+                            <td className="border px-2 py-1">Total</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">306</td>
+                            <td className="border px-2 py-1">7,819,200</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">7,819,200</td>
+                            <td className="border px-2 py-1">100.0000</td>
+                            <td className="border px-2 py-1">7,819,200</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">7,819,200</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">100.0000</td>
+                            <td className="border px-2 py-1">5,161,200</td>
+                            <td className="border px-2 py-1">66.0068</td>
+                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">0.0000</td>
+                            <td className="border px-2 py-1">7,819,200</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-4">* As on [Date]</p>
+                  </div>
+                </div>
+
+                {/* Historical Shareholding Pattern */}
+                <div className="bg-white rounded-lg shadow-md">
+                  <div className="p-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Historical Shareholding Pattern</h2>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">Shareholding Pattern as on March 31, 2024</p>
+                            <p className="text-sm text-gray-500">Published: March 31, 2024</p>
+                          </div>
+                        </div>
+                        <a 
+                          href={pdfFiles.shareholdingPattern}
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          type="application/pdf"
+                        >
+                          <Download className="h-5 w-5 mr-1" />
+                          <span>Download PDF</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

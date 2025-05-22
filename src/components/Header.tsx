@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import logo from '../assets/kizi_logo.jpeg';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const isHomePage = location.pathname === '/';
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link to="/" className="block">
               <img 
@@ -38,7 +27,15 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link 
+              to="/" 
+              className={`text-primary-900 hover:text-accent-600 font-medium transition-colors ${
+                isHomePage ? 'text-accent-600' : ''
+              }`}
+            >
+              Home
+            </Link>
             {isHomePage ? (
               <>
                 <a href="#about" className="text-primary-900 hover:text-accent-600 font-medium transition-colors">
@@ -55,64 +52,87 @@ const Header: React.FC = () => {
                 </a>
               </>
             ) : null}
-            <Link to="/contact" className="text-primary-900 hover:text-accent-600 font-medium transition-colors">
+            <Link 
+              to="/contact" 
+              className={`text-primary-900 hover:text-accent-600 font-medium transition-colors ${
+                location.pathname === '/contact' ? 'text-accent-600' : ''
+              }`}
+            >
               Contact
             </Link>
-          </nav>
-
-          <div className="hidden md:block">
             <Link 
               to="/investor-portal" 
-              className="px-6 py-2 bg-primary-900 text-white rounded hover:bg-primary-800 transition-colors"
+              className={`px-6 py-2 bg-primary-900 text-white rounded hover:bg-primary-800 transition-colors ${
+                location.pathname === '/investor-portal' ? 'bg-primary-800' : ''
+              }`}
             >
               Investor Portal
             </Link>
-          </div>
+          </nav>
 
           {/* Mobile menu button */}
-          <button 
+          <button
+            className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden focus:outline-none"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 text-primary-900" />
-            ) : (
-              <Menu className="h-6 w-6 text-primary-900" />
-            )}
+            <svg
+              className="h-6 w-6 text-gray-600"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {isMenuOpen ? (
+                <path d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4 px-4 animate-slideDown">
-            <nav className="flex flex-col space-y-4">
+          <div className="md:hidden border-t border-gray-100">
+            <nav className="flex flex-col space-y-4 py-4">
+              <Link 
+                to="/" 
+                className={`px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors ${
+                  isHomePage ? 'text-accent-600' : ''
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
               {isHomePage ? (
                 <>
                   <a 
                     href="#about" 
-                    className="text-primary-900 hover:text-accent-600 font-medium transition-colors"
+                    className="px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     About
                   </a>
                   <a 
                     href="#performance" 
-                    className="text-primary-900 hover:text-accent-600 font-medium transition-colors"
+                    className="px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Performance
                   </a>
                   <a 
                     href="#opportunities" 
-                    className="text-primary-900 hover:text-accent-600 font-medium transition-colors"
+                    className="px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Opportunities
                   </a>
                   <a 
                     href="#leadership" 
-                    className="text-primary-900 hover:text-accent-600 font-medium transition-colors"
+                    className="px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Leadership
@@ -121,18 +141,24 @@ const Header: React.FC = () => {
               ) : null}
               <Link 
                 to="/contact" 
-                className="text-primary-900 hover:text-accent-600 font-medium transition-colors"
+                className={`px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors ${
+                  location.pathname === '/contact' ? 'text-accent-600' : ''
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
-              <Link 
-                to="/investor-portal" 
-                className="px-6 py-2 bg-primary-900 text-white rounded hover:bg-primary-800 transition-colors inline-block"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Investor Portal
-              </Link>
+              <div className="px-4">
+                <Link 
+                  to="/investor-portal" 
+                  className={`w-full block text-center px-6 py-2 bg-primary-900 text-white rounded hover:bg-primary-800 transition-colors ${
+                    location.pathname === '/investor-portal' ? 'bg-primary-800' : ''
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Investor Portal
+                </Link>
+              </div>
             </nav>
           </div>
         )}

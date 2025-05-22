@@ -88,6 +88,17 @@ const AboutSection: React.FC = () => {
               </p>
             </div>
 
+            <div>
+              <h3 className="text-2xl font-semibold text-primary-900 mb-2">Our Vision</h3>
+              <p className="text-gray-600">
+              KIZI Apparels envisions a world where every woman is empowered to confidently express her
+              individuality through timeless and elegant fashion. Our mission is to go beyond trends by
+              creating styles that celebrate authenticity, inspire self-expression, and resonate with the diverse identities 
+              of women across the globe. We aspire to become a global symbol of refined fashion, redefining contemporary style while fostering confidence, 
+              creativity, and inclusivity in every garment we create.
+              </p>
+            </div>
+
             <div className="grid grid-cols-2 gap-4 pt-4">
               <div className="bg-primary-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-primary-900 mb-2">Production Capacity</h4>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button';
+
 import pinkModel from '../assets/KIZI_MODEL_PINK.webp';
 import blazerModel from '../assets/KIZI_MODEL_BLAZER.webp';
 import coOrdModel from '../assets/KIZI_MODEL_CO-ORD_SET.webp';
@@ -97,19 +97,6 @@ const AboutSection: React.FC = () => {
               of women across the globe. We aspire to become a global symbol of refined fashion, redefining contemporary style while fostering confidence, 
               creativity, and inclusivity in every garment we create.
               </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <div className="bg-primary-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-primary-900 mb-2">Production Capacity</h4>
-                <p className="text-4xl font-bold text-accent-600">250K+</p>
-                <p className="text-gray-600">Units per month</p>
-              </div>
-              <div className="bg-primary-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-primary-900 mb-2">Global Reach</h4>
-                <p className="text-4xl font-bold text-accent-600">30+</p>
-                <p className="text-gray-600">Countries served</p>
-              </div>
             </div>
           </div>
         </div>

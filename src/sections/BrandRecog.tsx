@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button';
+
 import influencerImage from '../assets/brand_recog/image.png';
 import instaHandleImage from '../assets/brand_recog/image1.png';
 

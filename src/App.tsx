@@ -4,7 +4,7 @@ import Header from './components/Header';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import PerformanceSection from './sections/PerformanceSection';
-import OpportunitiesSection from './sections/OpportunitiesSection';
+import BrandRecog from './sections/BrandRecog';
 import LeadershipSection from './sections/LeadershipSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './components/Footer';
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
       <HeroSection />
       <AboutSection />
       <PerformanceSection />
-      <OpportunitiesSection />
+      <BrandRecog />
       <LeadershipSection />
       <ContactSection />
     </>

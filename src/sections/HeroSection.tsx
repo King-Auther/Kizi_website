@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
       
       <div className="container mx-auto px-4 md:px-8 py-20 pt-40 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-xl">
+          <div className="max-w-xl text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 leading-tight mb-6">
               Empowering Women Through<br />
               <span className="text-accent-600">Elegant Fashion</span>
@@ -19,27 +19,26 @@ const HeroSection: React.FC = () => {
               innovative designs, and premium quality - creating value while empowering women globally.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="primary" size="lg">
-                Investment Opportunities
-              </Button>
-              <Button variant="outline" size="lg">
-                View Financial Reports
-              </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/pdf_links/ANNUAL_REPORT_KIZI.1.pdf" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="lg">
+                  View Financial Reports
+                </Button>
+              </a>
             </div>
             
             <div className="mt-10 grid grid-cols-3 gap-8">
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-primary-800">35+</p>
-                <p className="text-gray-600">Years of Excellence</p>
+                <p className="text-3xl md:text-4xl font-bold text-primary-800">₹20.35</p>
+                <p className="text-gray-600">Share Price</p>
               </div>
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-primary-800">18%</p>
-                <p className="text-gray-600">YoY Growth</p>
+                <p className="text-3xl md:text-4xl font-bold text-primary-800">₹15.91 Cr</p>
+                <p className="text-gray-600">Market Cap</p>
               </div>
               <div>
-                <p className="text-3xl md:text-4xl font-bold text-primary-800">120M+</p>
-                <p className="text-gray-600">Annual Revenue</p>
+                <p className="text-3xl md:text-4xl font-bold text-primary-800">22.12</p>
+                <p className="text-gray-600">P/E Ratio</p>
               </div>
             </div>
           </div>

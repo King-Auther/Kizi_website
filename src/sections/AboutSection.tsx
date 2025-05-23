@@ -111,10 +111,6 @@ const AboutSection: React.FC = () => {
                 <p className="text-gray-600">Countries served</p>
               </div>
             </div>
-
-            <Button variant="secondary" size="lg">
-              Download Company Profile
-            </Button>
           </div>
         </div>
       </div>

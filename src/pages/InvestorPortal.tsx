@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Download, TrendingUp, PieChart, Calendar, Bell, BarChart2 } from 'lucide-react';
+import { FileText, Download, Calendar, Bell, BarChart2 } from 'lucide-react';
+
 
 const InvestorPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -72,7 +73,6 @@ const InvestorPortal: React.FC = () => {
         setLoading(false);
       }
     };
-
     loadContent();
   }, [activeTab]);
 
@@ -106,7 +106,6 @@ const InvestorPortal: React.FC = () => {
                     activeTab === 'dashboard' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
                   }`}
                 >
-                  <TrendingUp className="h-5 w-5 mr-3" />
                   Dashboard
                 </button>
                 <button
@@ -153,36 +152,6 @@ const InvestorPortal: React.FC = () => {
           <div className="lg:col-span-3">
             {activeTab === 'dashboard' && (
               <div className="space-y-6">
-                {/* Quick Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-gray-900">Stock Price</h3>
-                      <TrendingUp className="h-5 w-5 text-green-500" />
-                    </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-2">₹245.60</p>
-                    <p className="text-sm text-green-600">+2.5% today</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-gray-900">Market Cap</h3>
-                      <PieChart className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-2">₹2.4B</p>
-                    <p className="text-sm text-gray-500">As of today</p>
-                  </div>
-                  <div className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-medium text-gray-900">52W High</h3>
-                      <TrendingUp className="h-5 w-5 text-blue-500" />
-                    </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-2">₹268.30</p>
-                    <p className="text-sm text-gray-500">Last month</p>
-                  </div>
-                </div>
-
-                
-
                 {/* Company Prospectus Section */}
                 <div className="bg-white rounded-lg shadow-md mt-6">
                   <div className="p-6">
@@ -209,22 +178,20 @@ const InvestorPortal: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* List of Creditors Section */}
-                <div className="bg-white rounded-lg shadow-md mt-6">
+                <div className="bg-white rounded-lg shadow-md">
                   <div className="p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">List of Creditors</h2>
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Draft Prospectus</h2>
                     <div className="border rounded-lg p-4 hover:bg-gray-50">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
                           <FileText className="h-6 w-6 text-gray-400 mr-3" />
                           <div>
-                            <h3 className="font-medium text-gray-900">List of Creditors PDF</h3>
-                            <p className="text-sm text-gray-500">Download the latest list of creditors in PDF format.</p>
+                            <h3 className="font-medium text-gray-900">Draft Red Herring Prospectus</h3>
+                            <p className="text-sm text-gray-500">Preliminary document filed before the IPO, containing most of the information about the company's business and financials.</p>
                           </div>
                         </div>
                         <a 
-                          href="/creditors/list_of_creditors.pdf"
+                          href="/pdf_links/Draft_Prospectus.pdf"
                           className="flex items-center text-blue-600 hover:text-blue-800 ml-4"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -236,8 +203,6 @@ const InvestorPortal: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Announcements */}
                 <div className="bg-white rounded-lg shadow-md">
                   <div className="p-6">
                     <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Announcements</h2>

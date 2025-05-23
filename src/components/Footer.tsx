@@ -38,9 +38,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#opportunities" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Opportunities
-                </a>
+                <a href="#brand-presence" className="text-gray-300 hover:text-accent-500 transition-colors">Brand Presence</a>
               </li>
               <li>
                 <a href="#leadership" className="text-gray-300 hover:text-accent-500 transition-colors">

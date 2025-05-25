@@ -387,27 +387,6 @@ const InvestorPortal: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white rounded-lg shadow-md">
-                  <div className="p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Announcements</h2>
-                    <div className="space-y-4">
-                      {announcements.map((announcement, index) => (
-                        <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg">
-                          <div className="flex items-center">
-                            <Bell className="h-5 w-5 text-gray-400 mr-3" />
-                            <div>
-                              <p className="font-medium text-gray-900">{announcement.title}</p>
-                              <p className="text-sm text-gray-500">{announcement.date}</p>
-                            </div>
-                          </div>
-                          <span className="text-sm px-3 py-1 rounded-full bg-blue-50 text-blue-700">
-                            {announcement.type}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
               </div>
             )}
             {activeTab === 'reports' && (

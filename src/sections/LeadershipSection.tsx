@@ -32,80 +32,8 @@ const LeadershipSection: React.FC = () => {
       name: 'Juhi Sawajani',
       position: 'Director',
       imageSrc: juhiImage,
-      bio: 'She is an Independent Director and an Associate Member of the Institute of Company Secretaries of India, with a Master’s in Commerce. Currently serving as Company Secretary at Sky Textiles India Pvt. Ltd., she brings expertise in secretarial compliance, GST, and trademark registration.',
+      bio: "She is an Independent Director and an Associate Member of the Institute of Company Secretaries of India, with a Master's in Commerce. Currently serving as Company Secretary at Sky Textiles India Pvt. Ltd., she brings expertise in secretarial compliance, GST, and trademark registration.",
       linkedin: '#'
-    }
-  ];
-
-  const committeeMembers = [
-    {
-      name: 'Audit Committee',
-      members: [
-        {
-          name: 'Ms. Juhi Sawajani',
-          din: '09811893',
-          designation: 'Non-Executive and Independent Director',
-          role: 'Chairman'
-        },
-        {
-          name: 'Ms. Avani Shah',
-          din: '09608898',
-          designation: 'Non-Executive Independent Director',
-          role: 'Member'
-        },
-        {
-          name: 'Mr. Abhishek Nathani',
-          din: '10086861',
-          designation: 'Managing Director',
-          role: 'Member'
-        }
-      ]
-    },
-    {
-      name: 'Stakeholders Relationship Committee',
-      members: [
-        {
-          name: 'Ms. Juhi Sawajani',
-          din: '09811893',
-          designation: 'Non-Executive and Independent Director',
-          role: 'Chairman'
-        },
-        {
-          name: 'Ms. Avani Shah',
-          din: '09608898',
-          designation: 'Non-Executive and Independent Director',
-          role: 'Member'
-        },
-        {
-          name: 'Mr. Abhishek Nathani',
-          din: '10086861',
-          designation: 'Managing Director',
-          role: 'Member'
-        }
-      ]
-    },
-    {
-      name: 'Nomination and Remuneration Committee',
-      members: [
-        {
-          name: 'Ms. Juhi Sawajani',
-          din: '09811893',
-          designation: 'Non-Executive and Independent Director',
-          role: 'Chairman'
-        },
-        {
-          name: 'Ms. Avani Shah',
-          din: '09608898',
-          designation: 'Non-Executive and Independent Director',
-          role: 'Member'
-        },
-        {
-          name: 'Mr. Ajay Mishra',
-          din: '07495905',
-          designation: 'Additional Director',
-          role: 'Member'
-        }
-      ]
     }
   ];
 
@@ -179,40 +107,6 @@ const LeadershipSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Committee Members Section */}
-        <div className="mb-16">
-          <h3 className="text-2xl font-semibold text-primary-900 mb-8 text-center">List of Committees</h3>
-          <div className="space-y-8">
-            {committeeMembers.map((committee, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-md p-6">
-                <h4 className="text-xl font-semibold text-primary-900 mb-4">{committee.name}</h4>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full">
-                    <thead>
-                      <tr className="bg-gray-50">
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Name</th>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">DIN</th>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Designation</th>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Role</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {committee.members.map((member, memberIndex) => (
-                        <tr key={memberIndex} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 text-sm text-gray-900">{member.name}</td>
-                          <td className="px-4 py-3 text-sm text-gray-600">{member.din}</td>
-                          <td className="px-4 py-3 text-sm text-gray-600">{member.designation}</td>
-                          <td className="px-4 py-3 text-sm text-gray-600">{member.role}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 

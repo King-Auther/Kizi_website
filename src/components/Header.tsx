@@ -21,7 +21,7 @@ const Header: React.FC = () => {
               <img 
                 src={logo} 
                 alt="Kizi Apparels" 
-                className="h-12 w-auto"
+                className="h-16.1 w-auto"
               />
             </Link>
           </div>

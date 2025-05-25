@@ -1,11 +1,144 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Download, Calendar, Bell, BarChart2 } from 'lucide-react';
+import { FileText, Download, Calendar, Bell, BarChart2, Plus } from 'lucide-react';
+import ReactCalendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './InvestorCalendar.css'; // Custom styles for react-calendar
 
+const committeeMembers = [
+  {
+    name: 'Audit Committee',
+    members: [
+      {
+        name: 'Ms. Juhi Sawajani',
+        din: '09811893',
+        designation: 'Non-Executive and Independent Director',
+        role: 'Chairman'
+      },
+      {
+        name: 'Ms. Avani Shah',
+        din: '09608898',
+        designation: 'Non-Executive Independent Director',
+        role: 'Member'
+      },
+      {
+        name: 'Mr. Abhishek Nathani',
+        din: '10086861',
+        designation: 'Managing Director',
+        role: 'Member'
+      }
+    ]
+  },
+  {
+    name: 'Stakeholders Relationship Committee',
+    members: [
+      {
+        name: 'Ms. Juhi Sawajani',
+        din: '09811893',
+        designation: 'Non-Executive and Independent Director',
+        role: 'Chairman'
+      },
+      {
+        name: 'Ms. Avani Shah',
+        din: '09608898',
+        designation: 'Non-Executive and Independent Director',
+        role: 'Member'
+      },
+      {
+        name: 'Mr. Abhishek Nathani',
+        din: '10086861',
+        designation: 'Managing Director',
+        role: 'Member'
+      }
+    ]
+  },
+  {
+    name: 'Nomination and Remuneration Committee',
+    members: [
+      {
+        name: 'Ms. Juhi Sawajani',
+        din: '09811893',
+        designation: 'Non-Executive and Independent Director',
+        role: 'Chairman'
+      },
+      {
+        name: 'Ms. Avani Shah',
+        din: '09608898',
+        designation: 'Non-Executive and Independent Director',
+        role: 'Member'
+      },
+      {
+        name: 'Mr. Ajay Mishra',
+        din: '07495905',
+        designation: 'Additional Director',
+        role: 'Member'
+      }
+    ]
+  }
+];
+
+// Helper to format date as yyyy-mm-dd in local time
+const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
 
 const InvestorPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [calendarDate, setCalendarDate] = useState<Date>(new Date());
+  const isAdmin = false; // Set to true to allow adding events
+
+  // Combine all events for the calendar
+  const calendarEvents: { date: string; name: string; attachment?: string }[] = [
+    // Other events
+    {
+      date: '2024-09-27',
+      name: 'Adoption of the Financial Statements: Resolution to receive, consider and adopt the Audited Financial Statements of the Company for the Financial Year ended March 31, 2024 together with the Reports of the Board of Directors ("the Board") and the Statutory Auditors thereon.',
+      attachment: 'https://www.bseindia.com/XBRLFILES/VTDuplicateUploadDocument/Voting_544221_289202419017_VT.html'
+    },
+    {
+      date: '2024-09-27',
+      name: 'Appointment of Ms. Kiran Nathani (DIN: 10086860) as Director, liable to Retire by Rotation',
+      attachment: 'https://www.bseindia.com/XBRLFILES/VTDuplicateUploadDocument/Voting_544221_289202419017_VT.html'
+    },
+    {
+      date: '2024-09-27',
+      name: 'To appoint Mr. Ajay Mishra (DIN: 07495905) as a Non-Executive Director.',
+      attachment: 'https://www.bseindia.com/XBRLFILES/VTDuplicateUploadDocument/Voting_544221_289202419017_VT.html'
+    },
+    // Board Meetings
+    {
+      date: '2025-05-28',
+      name: 'Board Meeting Results'
+    },
+    {
+      date: '2025-01-13',
+      name: 'General Board Meeting'
+    },
+    {
+      date: '2024-11-14',
+      name: 'Board Meeting Results'
+    },
+    // Integrated Filings
+    {
+      date: '2025-01-30',
+      name: 'Integrated Filing (Governance) - December 2024',
+      attachment: '#'
+    },
+    {
+      date: '2025-04-28',
+      name: 'Integrated Filing (Governance) - March 2025',
+      attachment: '#'
+    }
+  ];
+
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string | null>(formatDate(new Date()));
+  const [newEvent, setNewEvent] = useState<{ name: string; attachment: string }>({ name: '', attachment: '' });
+  const [events, setEvents] = useState(calendarEvents);
 
   // PDF files paths
   const pdfFiles = {
@@ -36,7 +169,7 @@ const InvestorPortal: React.FC = () => {
       url: pdfFiles.reportSep2024
     },
     { 
-      name: 'For The Period Ended 31 March, 2024', 
+      name: 'Annual Report for the Year Ended 2023-2024',
       date: 'March 31, 2024', 
       size: '3.1 MB',
       url: pdfFiles.reportMarch2024
@@ -59,6 +192,48 @@ const InvestorPortal: React.FC = () => {
     { title: 'Q1 2024 Earnings Call Schedule', date: 'Apr 5, 2024', type: 'Upcoming' },
     { title: 'New Sustainable Manufacturing Facility', date: 'Mar 20, 2024', type: 'Press Release' },
     { title: 'Board Meeting Notice', date: 'Mar 10, 2024', type: 'Regulatory' },
+  ];
+
+  const handleAddEvent = () => {
+    if (!selectedDate || !newEvent.name) return;
+    setEvents(prev => ([
+      ...prev,
+      { date: selectedDate, name: newEvent.name, attachment: newEvent.attachment }
+    ]));
+    setNewEvent({ name: '', attachment: '' });
+    setShowEventModal(false);
+  };
+
+  const renderEvents = (date: Date) => {
+    const key = formatDate(date);
+    if (events.some(event => event.date === key)) {
+      return (
+        <div className="absolute top-1 right-1 bg-primary-100 rounded-full w-2 h-2" />
+      );
+    }
+    return null;
+  };
+
+  // Add integrated filing events to a separate array
+  const integratedFilings = [
+    {
+      year: '2024 - 2025',
+      quarter: 'December 2024',
+      status: 'New',
+      filingDate: '30-01-2025 03:35:54 PM',
+      revisedFilingDate: '-',
+      revisionReason: '-',
+      xbrlLink: '#'
+    },
+    {
+      year: '2024 - 2025',
+      quarter: 'March 2025',
+      status: 'New',
+      filingDate: '28-04-2025 07:17:19 PM',
+      revisedFilingDate: '-',
+      revisionReason: '-',
+      xbrlLink: '#'
+    }
   ];
 
   useEffect(() => {
@@ -143,6 +318,15 @@ const InvestorPortal: React.FC = () => {
                 >
                   <FileText className="h-5 w-5 mr-3" />
                   Policies
+                </button>
+                <button
+                  onClick={() => setActiveTab('committees')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'committees' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <FileText className="h-5 w-5 mr-3" />
+                  Committees
                 </button>
               </div>
             </div>
@@ -309,131 +493,124 @@ const InvestorPortal: React.FC = () => {
                             <td className="border px-2 py-1">(A)</td>
                             <td className="border px-2 py-1">Promoter & Promoter Group</td>
                             <td className="border px-2 py-1">3</td>
-                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">44,59,800</td>
+                            <td className="border px-2 py-1">44,59,800</td>
+                            <td className="border px-2 py-1">57.04</td>
+                            <td className="border px-2 py-1">44,59,800</td>
+                            <td className="border px-2 py-1">57.04</td>
+                            <td className="border px-2 py-1">44,59,800</td>
                             <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">4,405,800</td>
-                            <td className="border px-2 py-1">56.3459</td>
-                            <td className="border px-2 py-1">4,405,800</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">4,405,800</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">56.3459</td>
-                            <td className="border px-2 py-1">4,405,800</td>
-                            <td className="border px-2 py-1">100.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">4,405,800</td>
+                            <td className="border px-2 py-1">44,59,800</td>
+                            <td className="border px-2 py-1">44,05,800</td>
+                            <td className="border px-2 py-1">98.79</td>
+                            <td className="border px-2 py-1">44,59,800</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
                           </tr>
                           {/* Public */}
                           <tr>
                             <td className="border px-2 py-1">(B)</td>
                             <td className="border px-2 py-1">Public</td>
-                            <td className="border px-2 py-1">303</td>
-                            <td className="border px-2 py-1">3,413,400</td>
+                            <td className="border px-2 py-1">306</td>
+                            <td className="border px-2 py-1">33,59,400</td>
+                            <td className="border px-2 py-1">33,59,400</td>
+                            <td className="border px-2 py-1">42.96</td>
+                            <td className="border px-2 py-1">33,59,400</td>
+                            <td className="border px-2 py-1">42.96</td>
+                            <td className="border px-2 py-1">33,59,400</td>
                             <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">3,413,400</td>
-                            <td className="border px-2 py-1">43.6541</td>
-                            <td className="border px-2 py-1">3,413,400</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">3,413,400</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">43.6541</td>
-                            <td className="border px-2 py-1">755,400</td>
-                            <td className="border px-2 py-1">22.1304</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">3,413,400</td>
+                            <td className="border px-2 py-1">33,59,400</td>
+                            <td className="border px-2 py-1">7,55,400</td>
+                            <td className="border px-2 py-1">22.49</td>
+                            <td className="border px-2 py-1">33,59,400</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
                           </tr>
                           {/* Non Promoter-Non Public */}
                           <tr>
                             <td className="border px-2 py-1">(C)</td>
                             <td className="border px-2 py-1">Non Promoter-Non Public</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
                           </tr>
                           {/* Shares underlying DRs */}
                           <tr>
                             <td className="border px-2 py-1">(C1)</td>
                             <td className="border px-2 py-1">Shares underlying DRs</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">NA</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">NA</td>
-                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
                           </tr>
                           {/* Shares held by Employee Trusts */}
                           <tr>
                             <td className="border px-2 py-1">(C2)</td>
-                            <td className="border px-2 py-1">Shares held by Employee Trusts</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">NA</td>
-                            <td className="border px-2 py-1">0</td>
+                            <td className="border px-2 py-1">Shares held by Employee Trust</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">0.00</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
                           </tr>
                           {/* Total */}
                           <tr className="bg-gray-100 font-semibold">
-                            <td className="border px-2 py-1">Total</td>
+                            <td className="border px-2 py-1">Grand Total</td>
                             <td className="border px-2 py-1"></td>
-                            <td className="border px-2 py-1">306</td>
-                            <td className="border px-2 py-1">7,819,200</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">7,819,200</td>
-                            <td className="border px-2 py-1">100.0000</td>
-                            <td className="border px-2 py-1">7,819,200</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">7,819,200</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">100.0000</td>
-                            <td className="border px-2 py-1">5,161,200</td>
-                            <td className="border px-2 py-1">66.0068</td>
-                            <td className="border px-2 py-1">0</td>
-                            <td className="border px-2 py-1">0.0000</td>
-                            <td className="border px-2 py-1">7,819,200</td>
+                            <td className="border px-2 py-1">309</td>
+                            <td className="border px-2 py-1">78,19,200</td>
+                            <td className="border px-2 py-1">78,19,200</td>
+                            <td className="border px-2 py-1">100.00</td>
+                            <td className="border px-2 py-1">78,19,200</td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1"></td>
+                            <td className="border px-2 py-1">78,19,200</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
+                            <td className="border px-2 py-1">-</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                    <p className="text-xs text-gray-500 mt-4">* As on [Date]</p>
+                    <p className="text-xs text-gray-500 mt-4">* As on 31 March 2025<br/>Note:C=C1+C2<br/>Grand Total=A+B+C</p>
                   </div>
                 </div>
 
@@ -471,10 +648,110 @@ const InvestorPortal: React.FC = () => {
             {activeTab === 'calendar' && (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Investor Calendar</h2>
-                <div className="text-gray-600">
-                  <p>No events scheduled at this time.</p>
-                  <p>Check back later for upcoming investor events and important dates.</p>
+                <div className="flex flex-col md:flex-row gap-8">
+                  <div>
+                    <ReactCalendar
+                      onChange={value => setCalendarDate(value as Date)}
+                      value={calendarDate as Date}
+                      onClickDay={(date) => {
+                        setCalendarDate(date);
+                        setSelectedDate(formatDate(date));
+                      }}
+                      tileContent={({ date, view }) => {
+                        if (view === 'month') {
+                          const key = formatDate(date);
+                          const dayEvents = events.filter(event => event.date === key);
+                          return dayEvents.length > 0 ? (
+                            <div className="flex justify-center mt-1">
+                              <div className="relative group">
+                                <span className="block w-2 h-2 rounded-full bg-accent-500 group-hover:bg-accent-700 transition"></span>
+                                <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-50 hidden group-hover:block bg-white text-xs text-primary-900 rounded shadow-lg px-2 py-1 whitespace-nowrap">
+                                  {dayEvents.map((e, i) => (
+                                    <div key={i}>{e.name}</div>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          ) : null;
+                        }
+                        return null;
+                      }}
+                      tileClassName={({ date, view }) => {
+                        if (view === 'month') {
+                          const key = formatDate(date);
+                          if (key === formatDate(new Date())) return 'rcal-today';
+                          if (key === formatDate(calendarDate as Date)) return 'rcal-selected';
+                        }
+                        return '';
+                      }}
+                      className="rounded-xl shadow-lg p-2 bg-white border border-gray-200 w-full max-w-md mx-auto rcal-root"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    {selectedDate && events.filter(e => e.date === selectedDate).length > 0 && (
+                      <div className="mb-4">
+                        <h3 className="font-semibold text-primary-900 mb-2">Events on {selectedDate}</h3>
+                        <ul className="space-y-2">
+                          {events.filter(e => e.date === selectedDate).map((event, idx) => (
+                            <li key={idx} className="bg-primary-50 rounded p-3 flex items-center gap-3">
+                              <span className="font-medium text-primary-800">{event.name}</span>
+                              {event.attachment && (
+                                <a href={event.attachment} target="_blank" rel="noopener noreferrer" className="text-primary-600 flex items-center gap-1 ml-2">
+                                  <FileText className="w-4 h-4" /> Attachment
+                                </a>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {isAdmin && (
+                      <button
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition mb-2"
+                        onClick={() => setShowEventModal(true)}
+                        type="button"
+                      >
+                        <Plus className="w-4 h-4" /> Add Event
+                      </button>
+                    )}
+                  </div>
                 </div>
+                {/* Modal for adding event */}
+                {isAdmin && showEventModal && (
+                  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md border border-accent-200">
+                      <h3 className="text-xl font-bold mb-4 text-primary-900">Add Event for {selectedDate}</h3>
+                      <input
+                        type="text"
+                        className="w-full border rounded px-3 py-2 mb-3 focus:ring-2 focus:ring-accent-500"
+                        placeholder="Event Name"
+                        value={newEvent.name}
+                        onChange={e => setNewEvent(ev => ({ ...ev, name: e.target.value }))}
+                      />
+                      <input
+                        type="text"
+                        className="w-full border rounded px-3 py-2 mb-3 focus:ring-2 focus:ring-accent-500"
+                        placeholder="Attachment URL (optional)"
+                        value={newEvent.attachment}
+                        onChange={e => setNewEvent(ev => ({ ...ev, attachment: e.target.value }))}
+                      />
+                      <div className="flex gap-2 justify-end">
+                        <button
+                          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
+                          onClick={() => { setShowEventModal(false); setNewEvent({ name: '', attachment: '' }); }}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          className="px-4 py-2 rounded bg-accent-500 text-white hover:bg-accent-600"
+                          onClick={handleAddEvent}
+                        >
+                          Add Event
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -513,6 +790,41 @@ const InvestorPortal: React.FC = () => {
                           <FileText className="h-5 w-5 mr-1" />
                           <span>View PDF</span>
                         </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'committees' && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-primary-900 mb-8 text-center">List of Committees</h2>
+                <div className="space-y-8">
+                  {committeeMembers.map((committee, index) => (
+                    <div key={index} className="bg-white rounded-xl shadow-md p-6">
+                      <h4 className="text-xl font-semibold text-primary-900 mb-4">{committee.name}</h4>
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full">
+                          <thead>
+                            <tr className="bg-gray-50">
+                              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Name</th>
+                              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">DIN</th>
+                              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Designation</th>
+                              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Role</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200">
+                            {committee.members.map((member, memberIndex) => (
+                              <tr key={memberIndex} className="hover:bg-gray-50">
+                                <td className="px-4 py-3 text-sm text-gray-900">{member.name}</td>
+                                <td className="px-4 py-3 text-sm text-gray-600">{member.din}</td>
+                                <td className="px-4 py-3 text-sm text-gray-600">{member.designation}</td>
+                                <td className="px-4 py-3 text-sm text-gray-600">{member.role}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   ))}

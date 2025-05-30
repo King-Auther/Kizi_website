@@ -58,8 +58,8 @@ const Contact: React.FC = () => {
                       <div>
                         <h3 className="font-medium text-gray-900">Visit Us</h3>
                         <p className="text-gray-600 mt-1">
-                          123 Business Park, Sector 5,<br />
-                          New Delhi, India - 110001
+                          H629, Sitapura Industrial Area, Sitapura,<br />
+                          Jaipur, Rajasthan 302022
                         </p>
                       </div>
                     </div>
@@ -69,8 +69,7 @@ const Contact: React.FC = () => {
                       <div>
                         <h3 className="font-medium text-gray-900">Call Us</h3>
                         <p className="text-gray-600 mt-1">
-                          Customer Service: +91 98765 43210<br />
-                          Sales Inquiries: +91 98765 43211
+                          Customer Service: 9983023939<br />
                         </p>
                       </div>
                     </div>
@@ -80,8 +79,7 @@ const Contact: React.FC = () => {
                       <div>
                         <h3 className="font-medium text-gray-900">Email Us</h3>
                         <p className="text-gray-600 mt-1">
-                          General Inquiries: info@kiziapparels.co.in<br />
-                          Support: support@kiziapparels.co.in
+                          General Inquiries: info@kiziapparels.com
                         </p>
                       </div>
                     </div>

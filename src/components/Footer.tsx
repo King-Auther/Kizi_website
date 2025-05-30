@@ -90,17 +90,16 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-2 text-accent-500 mt-0.5" />
                 <span className="text-gray-300">
-                  123 Business Park, Sector 5,
-                  <br /> New Delhi, India - 110001
+                  H629, Sitapura Industrial Area, Sitapura,<br /> Jaipur, Rajasthan 302022
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-accent-500" />
-                <span className="text-gray-300">+91 98765 43210</span>
+                <span className="text-gray-300">9983023939</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-accent-500" />
-                <span className="text-gray-300">investors@kiziapparels.co.in</span>
+                <span className="text-gray-300">info@kiziapparels.com</span>
               </li>
             </ul>
           </div>

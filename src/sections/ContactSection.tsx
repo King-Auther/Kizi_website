@@ -27,8 +27,8 @@ const ContactSection: React.FC = () => {
                   <div>
                     <h4 className="font-medium text-primary-900">Corporate Headquarters</h4>
                     <p className="text-gray-600">
-                      123 Business Park, Sector 5,<br />
-                      New Delhi, India - 110001
+                      H629, Sitapura Industrial Area, Sitapura,<br />
+                      Jaipur, Rajasthan 302022
                     </p>
                   </div>
                 </div>
@@ -37,7 +37,7 @@ const ContactSection: React.FC = () => {
                   <Phone className="h-6 w-6 text-accent-500 mt-0.5 mr-4" />
                   <div>
                     <h4 className="font-medium text-primary-900">Phone</h4>
-                    <p className="text-gray-600">+91 98765 43210</p>
+                    <p className="text-gray-600">9983023939</p>
                     <p className="text-gray-600">Mon-Fri, 9:00 AM - 6:00 PM IST</p>
                   </div>
                 </div>
@@ -46,7 +46,7 @@ const ContactSection: React.FC = () => {
                   <Mail className="h-6 w-6 text-accent-500 mt-0.5 mr-4" />
                   <div>
                     <h4 className="font-medium text-primary-900">Email</h4>
-                    <p className="text-gray-600">investors@kiziapparels.co.in</p>
+                    <p className="text-gray-600">info@kiziapparels.com</p>
                     <p className="text-gray-600">We respond within 24 hours</p>
                   </div>
                 </div>

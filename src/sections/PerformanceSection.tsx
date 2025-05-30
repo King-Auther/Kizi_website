@@ -16,8 +16,8 @@ const PerformanceSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <StatCard 
-            title="Share Price (23 May 2025)" 
-            value="₹20.35" 
+            title="Share Price (29 May 2025)" 
+            value="₹20.05" 
             caption="BSE: 544221"
           />
           <StatCard 

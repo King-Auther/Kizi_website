@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Download, Calendar, Bell, BarChart2, Plus } from 'lucide-react';
+import { FileText, Download, Calendar, Bell, BarChart2, Plus, Home } from 'lucide-react';
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './InvestorCalendar.css'; // Custom styles for react-calendar
+import logo from '../assets/kizi_logo.jpeg';
 
 const committeeMembers = [
   {
@@ -96,42 +97,63 @@ const InvestorPortal: React.FC = () => {
     // Other events
     {
       date: '2024-09-27',
-      name: 'Adoption of the Financial Statements: Resolution to receive, consider and adopt the Audited Financial Statements of the Company for the Financial Year ended March 31, 2024 together with the Reports of the Board of Directors ("the Board") and the Statutory Auditors thereon.',
+      name: 'Annual General Meeting: Adoption of Financial Statements and Director Appointments',
       attachment: 'https://www.bseindia.com/XBRLFILES/VTDuplicateUploadDocument/Voting_544221_289202419017_VT.html'
     },
     {
       date: '2024-09-27',
-      name: 'Appointment of Ms. Kiran Nathani (DIN: 10086860) as Director, liable to Retire by Rotation',
+      name: 'AGM Resolution: Appointment of Ms. Kiran Nathani as Director',
       attachment: 'https://www.bseindia.com/XBRLFILES/VTDuplicateUploadDocument/Voting_544221_289202419017_VT.html'
     },
     {
       date: '2024-09-27',
-      name: 'To appoint Mr. Ajay Mishra (DIN: 07495905) as a Non-Executive Director.',
+      name: 'AGM Resolution: Appointment of Mr. Ajay Mishra as Non-Executive Director',
       attachment: 'https://www.bseindia.com/XBRLFILES/VTDuplicateUploadDocument/Voting_544221_289202419017_VT.html'
     },
     // Board Meetings
     {
       date: '2025-05-28',
-      name: 'Board Meeting Results'
+      name: 'Board Meeting: Q4 FY 2024-25 Results'
     },
     {
       date: '2025-01-13',
-      name: 'General Board Meeting'
+      name: 'Board Meeting: Q3 FY 2024-25 Results'
     },
     {
       date: '2024-11-14',
-      name: 'Board Meeting Results'
+      name: 'Board Meeting: Q2 FY 2024-25 Results'
     },
     // Integrated Filings
     {
       date: '2025-01-30',
-      name: 'Integrated Filing (Governance) - December 2024',
+      name: 'Integrated Filing: Q3 FY 2024-25 (Governance)',
       attachment: '#'
     },
     {
       date: '2025-04-28',
-      name: 'Integrated Filing (Governance) - March 2025',
+      name: 'Integrated Filing: Q4 FY 2024-25 (Governance)',
       attachment: '#'
+    },
+    // Additional Events
+    {
+      date: '2024-10-15',
+      name: 'Investor Conference Call: Q2 FY 2024-25 Results Discussion'
+    },
+    {
+      date: '2025-01-20',
+      name: 'Investor Conference Call: Q3 FY 2024-25 Results Discussion'
+    },
+    {
+      date: '2025-04-15',
+      name: 'Investor Conference Call: Q4 FY 2024-25 Results Discussion'
+    },
+    {
+      date: '2024-12-20',
+      name: 'Analyst Meet: Business Strategy and Growth Plans'
+    },
+    {
+      date: '2025-03-15',
+      name: 'Analyst Meet: Annual Performance Review'
     }
   ];
 
@@ -188,12 +210,6 @@ const InvestorPortal: React.FC = () => {
     }
   ];
 
-  const announcements = [
-    { title: 'Q1 2024 Earnings Call Schedule', date: 'Apr 5, 2024', type: 'Upcoming' },
-    { title: 'New Sustainable Manufacturing Facility', date: 'Mar 20, 2024', type: 'Press Release' },
-    { title: 'Board Meeting Notice', date: 'Mar 10, 2024', type: 'Regulatory' },
-  ];
-
   const handleAddEvent = () => {
     if (!selectedDate || !newEvent.name) return;
     setEvents(prev => ([
@@ -203,38 +219,6 @@ const InvestorPortal: React.FC = () => {
     setNewEvent({ name: '', attachment: '' });
     setShowEventModal(false);
   };
-
-  const renderEvents = (date: Date) => {
-    const key = formatDate(date);
-    if (events.some(event => event.date === key)) {
-      return (
-        <div className="absolute top-1 right-1 bg-primary-100 rounded-full w-2 h-2" />
-      );
-    }
-    return null;
-  };
-
-  // Add integrated filing events to a separate array
-  const integratedFilings = [
-    {
-      year: '2024 - 2025',
-      quarter: 'December 2024',
-      status: 'New',
-      filingDate: '30-01-2025 03:35:54 PM',
-      revisedFilingDate: '-',
-      revisionReason: '-',
-      xbrlLink: '#'
-    },
-    {
-      year: '2024 - 2025',
-      quarter: 'March 2025',
-      status: 'New',
-      filingDate: '28-04-2025 07:17:19 PM',
-      revisedFilingDate: '-',
-      revisionReason: '-',
-      xbrlLink: '#'
-    }
-  ];
 
   useEffect(() => {
     const loadContent = async () => {
@@ -273,6 +257,10 @@ const InvestorPortal: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar */}
           <div className="lg:col-span-1">
+            {/* Logo with margin below */}
+            <div className="flex flex-col items-center mb-8 mt-2">
+              <img src={logo} alt="Kizi Apparels" className="h-[32px] w-auto" />
+            </div>
             <div className="bg-white rounded-lg shadow-md p-4">
               <div className="space-y-2">
                 <button
@@ -281,6 +269,7 @@ const InvestorPortal: React.FC = () => {
                     activeTab === 'dashboard' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
                   }`}
                 >
+                  <Home className="h-5 w-5 mr-3" />
                   Dashboard
                 </button>
                 <button
@@ -328,6 +317,15 @@ const InvestorPortal: React.FC = () => {
                   <FileText className="h-5 w-5 mr-3" />
                   Committees
                 </button>
+                <button
+                  onClick={() => setActiveTab('announcements')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'announcements' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <Bell className="h-5 w-5 mr-3" />
+                  Announcements
+                </button>
               </div>
             </div>
           </div>
@@ -362,6 +360,7 @@ const InvestorPortal: React.FC = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="bg-white rounded-lg shadow-md">
                   <div className="p-6">
                     <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Draft Prospectus</h2>
@@ -695,6 +694,129 @@ const InvestorPortal: React.FC = () => {
                     )}
                   </div>
                 </div>
+
+                {/* Events Section */}
+                <div className="mt-8">
+                  <h3 className="text-xl font-semibold text-primary-900 mb-6">Events</h3>
+                  
+                  {/* Board Meetings */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-medium text-primary-900 mb-4">Board Meetings</h4>
+                    <div className="space-y-4">
+                      {events
+                        .filter(event => event.name.toLowerCase().includes('board meeting'))
+                        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                        .map((event, idx) => (
+                          <div key={idx} className="bg-white border rounded-lg p-4 hover:bg-gray-50">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3">
+                                  <div className="bg-primary-100 text-primary-900 px-3 py-1 rounded-full text-sm font-medium">
+                                    {new Date(event.date).toLocaleDateString('en-US', { 
+                                      year: 'numeric', 
+                                      month: 'long', 
+                                      day: 'numeric' 
+                                    })}
+                                  </div>
+                                </div>
+                                <p className="mt-2 text-gray-900">{event.name}</p>
+                              </div>
+                              {event.attachment && (
+                                <a 
+                                  href={event.attachment} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-primary-600 flex items-center gap-1 ml-4"
+                                >
+                                  <FileText className="w-4 h-4" /> View Attachment
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Integrated Filings */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-medium text-primary-900 mb-4">Integrated Filings</h4>
+                    <div className="space-y-4">
+                      {events
+                        .filter(event => event.name.toLowerCase().includes('integrated filing'))
+                        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                        .map((event, idx) => (
+                          <div key={idx} className="bg-white border rounded-lg p-4 hover:bg-gray-50">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3">
+                                  <div className="bg-primary-100 text-primary-900 px-3 py-1 rounded-full text-sm font-medium">
+                                    {new Date(event.date).toLocaleDateString('en-US', { 
+                                      year: 'numeric', 
+                                      month: 'long', 
+                                      day: 'numeric' 
+                                    })}
+                                  </div>
+                                </div>
+                                <p className="mt-2 text-gray-900">{event.name}</p>
+                              </div>
+                              {event.attachment && (
+                                <a 
+                                  href={event.attachment} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-primary-600 flex items-center gap-1 ml-4"
+                                >
+                                  <FileText className="w-4 h-4" /> View Attachment
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Other Events */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-medium text-primary-900 mb-4">Other Events</h4>
+                    <div className="space-y-4">
+                      {events
+                        .filter(event => 
+                          !event.name.toLowerCase().includes('board meeting') && 
+                          !event.name.toLowerCase().includes('integrated filing')
+                        )
+                        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                        .map((event, idx) => (
+                          <div key={idx} className="bg-white border rounded-lg p-4 hover:bg-gray-50">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3">
+                                  <div className="bg-primary-100 text-primary-900 px-3 py-1 rounded-full text-sm font-medium">
+                                    {new Date(event.date).toLocaleDateString('en-US', { 
+                                      year: 'numeric', 
+                                      month: 'long', 
+                                      day: 'numeric' 
+                                    })}
+                                  </div>
+                                </div>
+                                <p className="mt-2 text-gray-900">{event.name}</p>
+                              </div>
+                              {event.attachment && (
+                                <a 
+                                  href={event.attachment} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-primary-600 flex items-center gap-1 ml-4"
+                                >
+                                  <FileText className="w-4 h-4" /> View Attachment
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 {/* Modal for adding event */}
                 {isAdmin && showEventModal && (
                   <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
@@ -807,6 +929,140 @@ const InvestorPortal: React.FC = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'announcements' && (
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Announcements</h2>
+                <div className="space-y-6">
+                  {/* Announcement 1 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Results For The Half Year & Year Ended 31st March, 2025</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Result</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Revised Considered and Approved Audited Financial Results for the Half year and Financial Year ended 31st March, 2025</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 28-05-2025 21:24:43 | Disseminated Time: 28-05-2025 21:24:43 | Time Taken: 00:00:00</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/2f78a685-db85-4d63-b6f4-8bea244dcaac.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 0.44 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 2 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Results For The Half Year & Year Ended 31st March, 2025</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Result</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Considered and Approved Audited Standalone Financial Results of the Company for the Half year and year ended 31st March, 2025</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 28-05-2025 19:12:56 | Disseminated Time: 28-05-2025 19:12:56 | Time Taken: 00:00:00</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/dfc75494-103a-4386-ac50-ba01703334f3.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 4.82 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 3 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Board Meeting Outcome for Considered And Approved Audited Standalone Financial Results Of The Company For The Half Year And Year Ended 31st March, 2025</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Considered and Approved Audited Standalone Financial Results of the company for the Half year and year Ended 31st March, 2025</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 28-05-2025 18:22:56 | Disseminated Time: 28-05-2025 18:23:13 | Time Taken: 00:00:17</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/8fd1e9cb-bc5e-421b-bde5-f3d1e2b327a4.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 4.71 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 4 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Results For The Half Year & Year Ended 31st March, 2025</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Result</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Considered and Approved Audited Standalone Financial Results of the company for the Half year and year ended 31st March, 2025</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 28-05-2025 18:18:54 | Disseminated Time: 28-05-2025 18:18:54 | Time Taken: 00:00:00</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/ec018ab0-08f5-4fc0-8ab0-f3c48d552fca.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 4.71 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 5 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Kizi Apparels Ltd. Joins Hands With AJIO, A Reliance Retail Venture, To Expand Digital Retail Presence</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">This is to Inform to the Stock Exchange that KIZI APPARELS LTD, Joining hands with AJIO, a Reliance Retail Venture.</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 19-05-2025 12:42:27 | Disseminated Time: 19-05-2025 12:42:27 | Time Taken: 00:00:00</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachHis/0888787c-3628-4c3f-a2e0-9bdb8cd2b404.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 0.27 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 6 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Non Applicability Of Large Corporate Disclosure</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Non Applicability of Large Corporate Disclosure</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 14-05-2025 19:27:27 | Disseminated Time: 14-05-2025 19:27:28 | Time Taken: 00:00:01</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachHis/8be6babe-a096-4797-8898-e66afb40d6dd.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 0.16 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 7 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Board Meeting Intimation for Consider And Approve Audited Standalone Financial Results Of The Company For The Half Year And Year Ended 31st March, 2025</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Kizi Apparels Ltd has informed BSE that the meeting of the Board of Directors of the Company is scheduled on 28/05/2025, inter alia, to consider and approve Audited Standalone Financial Results ... <a href="https://www.bseindia.com/xml-data/corpfiling/AttachHis/21f9d7be-7b50-4fb0-92e0-60c33d8c7b60.pdf" className="text-blue-600 hover:underline">Read More..</a></div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 13-05-2025 18:21:08 | Disseminated Time: 13-05-2025 18:21:09 | Time Taken: 00:00:01</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachHis/21f9d7be-7b50-4fb0-92e0-60c33d8c7b60.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 0.18 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 8 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Compliances-Certificate under Reg. 74 (5) of SEBI (DP) Regulations, 2018</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Compliance Certificate Under Regulation 74(5) of SEBI(DP) Regulation,2018</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 15-04-2025 12:20:02 | Disseminated Time: 15-04-2025 12:20:03 | Time Taken: 00:00:01</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachHis/236ca592-cd9c-492f-b3a3-b5485dd31da5.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 0.56 MB PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 9 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Closure of Trading Window</span>
+                      <span className="inline-block bg-pink-100 text-pink-800 text-xs font-semibold px-2 py-1 rounded">Insider Trading / SAST</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Declaration of Financial Results for The Half year and Year Ended on 31st March, 2025</div>
+                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 26-03-2025 19:05:11 | Disseminated Time: 26-03-2025 19:05:11 | Time Taken: 00:00:00</div>
+                    <div className="flex items-center gap-4">
+                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachHis/4a2c26eb-5f86-4122-87ac-f49a2cfd4a52.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> 0.28 MB PDF
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

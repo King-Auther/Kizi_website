@@ -5,7 +5,79 @@ import 'react-calendar/dist/Calendar.css';
 import './InvestorCalendar.css'; // Custom styles for react-calendar
 import logo from '../assets/kizi_logo.jpeg';
 
-const committeeMembers = [
+interface CommitteeMember {
+  name: string;
+  din: string;
+  designation: string;
+  role: string;
+  dateOfAppointment?: string;
+}
+
+interface Committee {
+  name: string;
+  members: CommitteeMember[];
+}
+
+const committeeMembers: Committee[] = [
+  {
+    name: 'Board of Directors',
+    members: [
+      {
+        name: 'Ms. Kiran Nathani',
+        din: '10086860',
+        designation: 'Director',
+        role: 'Director',
+        dateOfAppointment: '24/03/2023'
+      },
+      {
+        name: 'Mr. Abhishek Nathani',
+        din: '10086861',
+        designation: 'Managing Director',
+        role: 'Managing Director',
+        dateOfAppointment: '24/03/2023'
+      },
+      {
+        name: 'Mr. Ajay Mishra',
+        din: '07495905',
+        designation: 'Additional Director',
+        role: 'Additional Director',
+        dateOfAppointment: '01/05/2024'
+      },
+      {
+        name: 'Ms. Juhi Sawajani',
+        din: '09811893',
+        designation: 'Director',
+        role: 'Director',
+        dateOfAppointment: '24/06/2023'
+      },
+      {
+        name: 'Ms. Avani Ashwinkumar Shah',
+        din: '09608898',
+        designation: 'Director',
+        role: 'Director',
+        dateOfAppointment: '24/06/2023'
+      }
+    ]
+  },
+  {
+    name: 'Key Management Personnel',
+    members: [
+      {
+        name: 'Ms. Kiran Nathani',
+        din: 'BTZPS1682R',
+        designation: 'CFO',
+        role: 'CFO',
+        dateOfAppointment: '05/07/2023'
+      },
+      {
+        name: 'Ms. Monica Mahaveer Jain',
+        din: 'AWKPJ5118N',
+        designation: 'Company Secretary',
+        role: 'Company Secretary',
+        dateOfAppointment: '01/08/2023'
+      }
+    ]
+  },
   {
     name: 'Audit Committee',
     members: [
@@ -332,7 +404,7 @@ const InvestorPortal: React.FC = () => {
                   }`}
                 >
                   <FileText className="h-5 w-5 mr-3" />
-                  Committees
+                  Company Members
                 </button>
                 <button
                   onClick={() => setActiveTab('announcements')}
@@ -968,7 +1040,7 @@ const InvestorPortal: React.FC = () => {
 
             {activeTab === 'committees' && (
               <div className="mb-8">
-                <h2 className="text-2xl font-bold text-primary-900 mb-8 text-center">List of Committees</h2>
+                <h2 className="text-2xl font-bold text-primary-900 mb-8 text-center">Company Members</h2>
                 <div className="space-y-8">
                   {committeeMembers.map((committee, index) => (
                     <div key={index} className="bg-white rounded-xl shadow-md p-6">
@@ -978,9 +1050,12 @@ const InvestorPortal: React.FC = () => {
                           <thead>
                             <tr className="bg-gray-50">
                               <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Name</th>
-                              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">DIN</th>
+                              <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">DIN/PAN</th>
                               <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Designation</th>
                               <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Role</th>
+                              {committee.members[0].dateOfAppointment && (
+                                <th className="px-4 py-2 text-left text-sm font-medium text-gray-600">Date of Appointment</th>
+                              )}
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-200">
@@ -990,6 +1065,9 @@ const InvestorPortal: React.FC = () => {
                                 <td className="px-4 py-3 text-sm text-gray-600">{member.din}</td>
                                 <td className="px-4 py-3 text-sm text-gray-600">{member.designation}</td>
                                 <td className="px-4 py-3 text-sm text-gray-600">{member.role}</td>
+                                {member.dateOfAppointment && (
+                                  <td className="px-4 py-3 text-sm text-gray-600">{member.dateOfAppointment}</td>
+                                )}
                               </tr>
                             ))}
                           </tbody>

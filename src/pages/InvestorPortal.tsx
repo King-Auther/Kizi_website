@@ -113,15 +113,15 @@ const InvestorPortal: React.FC = () => {
     // Board Meetings
     {
       date: '2025-05-28',
-      name: 'Board Meeting: Q4 FY 2024-25 Results'
+      name: 'Board Meeting: FY 2024-25 Results'
     },
     {
       date: '2025-01-13',
-      name: 'Board Meeting: Q3 FY 2024-25 Results'
+      name: 'Board Meeting: Q3 FY 2024-25 General Meeting'
     },
     {
       date: '2024-11-14',
-      name: 'Board Meeting: Q2 FY 2024-25 Results'
+      name: 'Board Meeting: FY 2024-25 Results'
     },
     // Integrated Filings
     {
@@ -314,7 +314,7 @@ const InvestorPortal: React.FC = () => {
                   }`}
                 >
                   <Calendar className="h-5 w-5 mr-3" />
-                  Calendar
+                  Future Events
                 </button>
                 <button
                   onClick={() => setActiveTab('policies')}
@@ -373,6 +373,19 @@ const InvestorPortal: React.FC = () => {
                           <FileText className="h-5 w-5 mr-1" />
                           <span>View PDF</span>
                         </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Notices Section */}
+                <div className="bg-white rounded-lg shadow-md">
+                  <div className="p-6">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Important Notices</h2>
+                    <div className="space-y-4">
+                      <div className="border rounded-lg p-8 text-center">
+                        <Bell className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                        <p className="text-gray-600">No new notices at this time</p>
                       </div>
                     </div>
                   </div>
@@ -642,7 +655,7 @@ const InvestorPortal: React.FC = () => {
 
             {activeTab === 'calendar' && (
               <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">Investor Calendar</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-6">Future Events</h2>
                 <div className="flex flex-col md:flex-row gap-8">
                   <div>
                     <ReactCalendar

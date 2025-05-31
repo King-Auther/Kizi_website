@@ -127,12 +127,23 @@ const InvestorPortal: React.FC = () => {
     {
       date: '2025-01-30',
       name: 'Integrated Filing: Q3 FY 2024-25 (Governance)',
-      attachment: '#'
+      attachment: 'https://www.bseindia.com/XBRLFILES/ICGIGDuplicateUploadFile/ICGIG_544221_2842025191719_ICGIG.html'
     },
     {
       date: '2025-04-28',
       name: 'Integrated Filing: Q4 FY 2024-25 (Governance)',
-      attachment: '#'
+      attachment: 'https://www.bseindia.com/XBRLFILES/ICGIGDuplicateUploadFile/ICGIG_544221_2842025191719_ICGIG.html'
+    },
+    // New Integrated Filings for Finance
+    {
+      date: '2025-05-29',
+      name: 'Integrated Filing: Standalone-Mar-Yearly-2025 (Finance)',
+      attachment: 'https://www.bseindia.com/XBRLFILES/IFOtherthanDuplicateUploadDocument/IFOtherthan_544221_295202511363_IFOtherthan.html'
+    },
+    {
+      date: '2025-05-29',
+      name: 'Integrated Filing: Standalone-Mar-Hly-2025 (Finance)',
+      attachment: 'https://www.bseindia.com/XBRLFILES/IFOtherthanDuplicateUploadDocument/IFOtherthan_544221_295202511363_IFOtherthan.html'
     },
     // Additional Events
     {
@@ -184,6 +195,12 @@ const InvestorPortal: React.FC = () => {
   };
 
   const financialReports = [
+    { 
+      name: 'Results for the Half Year and Year Ended 31st March, 2025',
+      date: 'March 31, 2025',
+      size: '4.71 MB',
+      url: '/pdf_links/ec018ab0-08f5-4fc0-8ab0-f3c48d552fca.pdf'
+    },
     { 
       name: 'For The period Ended 30th Sep 2024', 
       date: 'September 30, 2024', 
@@ -279,7 +296,7 @@ const InvestorPortal: React.FC = () => {
                   }`}
                 >
                   <FileText className="h-5 w-5 mr-3" />
-                  Reports
+                  Financial Reports
                 </button>
                 <button
                   onClick={() => setActiveTab('shareholding')}
@@ -673,11 +690,24 @@ const InvestorPortal: React.FC = () => {
                           {events.filter(e => e.date === selectedDate).map((event, idx) => (
                             <li key={idx} className="bg-primary-50 rounded p-3 flex items-center gap-3">
                               <span className="font-medium text-primary-800">{event.name}</span>
-                              {event.attachment && (
-                                <a href={event.attachment} target="_blank" rel="noopener noreferrer" className="text-primary-600 flex items-center gap-1 ml-2">
-                                  <FileText className="w-4 h-4" /> Attachment
-                                </a>
-                              )}
+                              {event.attachment ? (
+                                event.attachment !== '#' ? (
+                                  <a 
+                                    href={event.attachment} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="text-primary-600 flex items-center gap-1 ml-2"
+                                  >
+                                    <FileText className="w-4 h-4" />
+                                    <span>{event.attachment.endsWith('.html') ? 'View XBRL' : 'View PDF'}</span>
+                                  </a>
+                                ) : (
+                                  <span className="text-gray-400 flex items-center gap-1 ml-2 cursor-not-allowed opacity-60">
+                                    <FileText className="w-4 h-4" />
+                                    <span>Attachment Unavailable</span>
+                                  </span>
+                                )
+                              ) : null}
                             </li>
                           ))}
                         </ul>
@@ -705,7 +735,7 @@ const InvestorPortal: React.FC = () => {
                     <div className="space-y-4">
                       {events
                         .filter(event => event.name.toLowerCase().includes('board meeting'))
-                        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                         .map((event, idx) => (
                           <div key={idx} className="bg-white border rounded-lg p-4 hover:bg-gray-50">
                             <div className="flex items-start justify-between">
@@ -721,16 +751,24 @@ const InvestorPortal: React.FC = () => {
                                 </div>
                                 <p className="mt-2 text-gray-900">{event.name}</p>
                               </div>
-                              {event.attachment && (
-                                <a 
-                                  href={event.attachment} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer" 
-                                  className="text-primary-600 flex items-center gap-1 ml-4"
-                                >
-                                  <FileText className="w-4 h-4" /> View Attachment
-                                </a>
-                              )}
+                              {event.attachment ? (
+                                event.attachment !== '#' ? (
+                                  <a 
+                                    href={event.attachment} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="text-primary-600 flex items-center gap-1 ml-4"
+                                  >
+                                    <FileText className="w-4 h-4" />
+                                    <span>{event.attachment.endsWith('.html') ? 'View XBRL' : 'View PDF'}</span>
+                                  </a>
+                                ) : (
+                                  <span className="text-gray-400 flex items-center gap-1 ml-4 cursor-not-allowed opacity-60">
+                                    <FileText className="w-4 h-4" />
+                                    <span>Attachment Unavailable</span>
+                                  </span>
+                                )
+                              ) : null}
                             </div>
                           </div>
                       ))}
@@ -743,7 +781,7 @@ const InvestorPortal: React.FC = () => {
                     <div className="space-y-4">
                       {events
                         .filter(event => event.name.toLowerCase().includes('integrated filing'))
-                        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                         .map((event, idx) => (
                           <div key={idx} className="bg-white border rounded-lg p-4 hover:bg-gray-50">
                             <div className="flex items-start justify-between">
@@ -759,16 +797,24 @@ const InvestorPortal: React.FC = () => {
                                 </div>
                                 <p className="mt-2 text-gray-900">{event.name}</p>
                               </div>
-                              {event.attachment && (
-                                <a 
-                                  href={event.attachment} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer" 
-                                  className="text-primary-600 flex items-center gap-1 ml-4"
-                                >
-                                  <FileText className="w-4 h-4" /> View Attachment
-                                </a>
-                              )}
+                              {event.attachment ? (
+                                event.attachment !== '#' ? (
+                                  <a 
+                                    href={event.attachment} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="text-primary-600 flex items-center gap-1 ml-4"
+                                  >
+                                    <FileText className="w-4 h-4" />
+                                    <span>{event.attachment.endsWith('.html') ? 'View XBRL' : 'View PDF'}</span>
+                                  </a>
+                                ) : (
+                                  <span className="text-gray-400 flex items-center gap-1 ml-4 cursor-not-allowed opacity-60">
+                                    <FileText className="w-4 h-4" />
+                                    <span>Attachment Unavailable</span>
+                                  </span>
+                                )
+                              ) : null}
                             </div>
                           </div>
                       ))}
@@ -782,9 +828,10 @@ const InvestorPortal: React.FC = () => {
                       {events
                         .filter(event => 
                           !event.name.toLowerCase().includes('board meeting') && 
-                          !event.name.toLowerCase().includes('integrated filing')
+                          !event.name.toLowerCase().includes('integrated filing') &&
+                          event.attachment // Only include events with attachments
                         )
-                        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+                        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                         .map((event, idx) => (
                           <div key={idx} className="bg-white border rounded-lg p-4 hover:bg-gray-50">
                             <div className="flex items-start justify-between">
@@ -800,16 +847,24 @@ const InvestorPortal: React.FC = () => {
                                 </div>
                                 <p className="mt-2 text-gray-900">{event.name}</p>
                               </div>
-                              {event.attachment && (
-                                <a 
-                                  href={event.attachment} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer" 
-                                  className="text-primary-600 flex items-center gap-1 ml-4"
-                                >
-                                  <FileText className="w-4 h-4" /> View Attachment
-                                </a>
-                              )}
+                              {event.attachment ? (
+                                event.attachment !== '#' ? (
+                                  <a 
+                                    href={event.attachment} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="text-primary-600 flex items-center gap-1 ml-4"
+                                  >
+                                    <FileText className="w-4 h-4" />
+                                    <span>{event.attachment.endsWith('.html') ? 'View XBRL' : 'View PDF'}</span>
+                                  </a>
+                                ) : (
+                                  <span className="text-gray-400 flex items-center gap-1 ml-4 cursor-not-allowed opacity-60">
+                                    <FileText className="w-4 h-4" />
+                                    <span>Attachment Unavailable</span>
+                                  </span>
+                                )
+                              ) : null}
                             </div>
                           </div>
                       ))}
@@ -962,34 +1017,6 @@ const InvestorPortal: React.FC = () => {
                     <div className="flex items-center gap-4">
                       <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/dfc75494-103a-4386-ac50-ba01703334f3.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
                         <FileText className="h-5 w-5 mr-1" /> 4.82 MB PDF
-                      </a>
-                    </div>
-                  </div>
-                  {/* Announcement 3 */}
-                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
-                      <span className="font-bold text-primary-900 text-lg">Board Meeting Outcome for Considered And Approved Audited Standalone Financial Results Of The Company For The Half Year And Year Ended 31st March, 2025</span>
-                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
-                    </div>
-                    <div className="text-gray-700 mb-2">Considered and Approved Audited Standalone Financial Results of the company for the Half year and year Ended 31st March, 2025</div>
-                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 28-05-2025 18:22:56 | Disseminated Time: 28-05-2025 18:23:13 | Time Taken: 00:00:17</div>
-                    <div className="flex items-center gap-4">
-                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/8fd1e9cb-bc5e-421b-bde5-f3d1e2b327a4.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
-                        <FileText className="h-5 w-5 mr-1" /> 4.71 MB PDF
-                      </a>
-                    </div>
-                  </div>
-                  {/* Announcement 4 */}
-                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
-                      <span className="font-bold text-primary-900 text-lg">Results For The Half Year & Year Ended 31st March, 2025</span>
-                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Result</span>
-                    </div>
-                    <div className="text-gray-700 mb-2">Considered and Approved Audited Standalone Financial Results of the company for the Half year and year ended 31st March, 2025</div>
-                    <div className="text-xs text-gray-500 mb-2">Exchange Received Time: 28-05-2025 18:18:54 | Disseminated Time: 28-05-2025 18:18:54 | Time Taken: 00:00:00</div>
-                    <div className="flex items-center gap-4">
-                      <a href="https://www.bseindia.com/xml-data/corpfiling/AttachLive/ec018ab0-08f5-4fc0-8ab0-f3c48d552fca.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
-                        <FileText className="h-5 w-5 mr-1" /> 4.71 MB PDF
                       </a>
                     </div>
                   </div>

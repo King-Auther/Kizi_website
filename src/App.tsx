@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Header from './components/Header';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
-import PerformanceSection from './sections/PerformanceSection';
 import BrandRecog from './sections/BrandRecog';
 import LeadershipSection from './sections/LeadershipSection';
 import ContactSection from './sections/ContactSection';
@@ -16,7 +15,6 @@ const Home: React.FC = () => {
     <>
       <HeroSection />
       <AboutSection />
-      <PerformanceSection />
       <BrandRecog />
       <LeadershipSection />
       <ContactSection />

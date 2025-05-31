@@ -11,29 +11,25 @@ const LeadershipSection: React.FC = () => {
       name: 'Abhishek Nathani',
       position: 'Managing Director ',
       imageSrc: abhishekImage,
-      bio: 'Experienced logistics and supply chain director with over 20 years of expertise in fleet management, procurement, and operational optimization, known for driving cost efficiencies and streamlining logistics for leading organizations.',
-      linkedin: 'https://www.linkedin.com/in/abhisheknathani/'
+      bio: 'Experienced logistics and supply chain director with over 20 years of expertise in fleet management, procurement, and operational optimization, known for driving cost efficiencies and streamlining logistics for leading organizations.'
     },
     {
       name: 'Kiran Nathani',
       position: 'Director & CFO',
       imageSrc: kiranImage,
-      bio: 'Strategic and results-driven professional with 18 years of experience across marketing, business development, production, and HR, currently leading marketing and operations at Aaika Creations.',
-      linkedin: 'https://www.linkedin.com/in/kiran-nathani/'
+      bio: 'Distinguished financial leader with 18 years of comprehensive experience in corporate finance, strategic planning, and business operations. Currently serving as Director and Chief Financial Officer at Kizi Apparels Ltd., overseeing financial strategy, corporate governance, and sustainable business growth initiatives.'
     },
     {
       name: 'Avani Ashwinkumar Shah',
       position: 'Director',
       imageSrc: avaniImage,
-      bio: 'She is an Independent Director of the Company with over 10 years of administrative experience and currently serves with the Freight Corridor Corporation of India Limited under the Ministry of Railways since 2012.',
-      linkedin: '#'
+      bio: 'She is an Independent Director of the Company with over 10 years of administrative experience and currently serves with the Freight Corridor Corporation of India Limited under the Ministry of Railways since 2012.'
     },
     {
       name: 'Juhi Sawajani',
       position: 'Director',
       imageSrc: juhiImage,
-      bio: "She is an Independent Director and an Associate Member of the Institute of Company Secretaries of India, with a Master's in Commerce. Currently serving as Company Secretary at Sky Textiles India Pvt. Ltd., she brings expertise in secretarial compliance, GST, and trademark registration.",
-      linkedin: '#'
+      bio: "She is an Independent Director and an Associate Member of the Institute of Company Secretaries of India, with a Master's in Commerce. Currently serving as Company Secretary at Sky Textiles India Pvt. Ltd., she brings expertise in secretarial compliance, GST, and trademark registration."
     }
   ];
 
@@ -60,7 +56,6 @@ const LeadershipSection: React.FC = () => {
                 position={member.position}
                 imageSrc={member.imageSrc}
                 bio={member.bio}
-                linkedin={member.linkedin}
               />
             ))}
           </div>

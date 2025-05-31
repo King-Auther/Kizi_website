@@ -1,25 +1,22 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-primary-900 text-white py-12">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">Kizi<span className="text-accent-500">Apparels</span></h3>
             <p className="text-gray-300 mb-4">
               A leading manufacturer and exporter of premium apparel products, committed to quality and sustainability.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-accent-500 transition-colors">
+              <a href="https://www.instagram.com/kiziapparels/" className="text-white hover:text-accent-500 transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white hover:text-accent-500 transition-colors">
+              <a href="https://www.facebook.com/Kiziapparels" className="text-white hover:text-accent-500 transition-colors">
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="text-white hover:text-accent-500 transition-colors">
-                <Linkedin size={20} />
               </a>
             </div>
           </div>
@@ -33,11 +30,6 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#performance" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Performance
-                </a>
-              </li>
-              <li>
                 <a href="#brand-presence" className="text-gray-300 hover:text-accent-500 transition-colors">Brand Presence</a>
               </li>
               <li>
@@ -48,37 +40,6 @@ const Footer: React.FC = () => {
               <li>
                 <a href="#contact" className="text-gray-300 hover:text-accent-500 transition-colors">
                   Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Investor Resources</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Annual Reports
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Financial Statements
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Corporate Governance
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Press Releases
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-accent-500 transition-colors">
-                  Investor FAQs
                 </a>
               </li>
             </ul>

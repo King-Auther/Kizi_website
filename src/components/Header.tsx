@@ -41,9 +41,6 @@ const Header: React.FC = () => {
                 <a href="#about" className="text-primary-900 hover:text-accent-600 font-medium transition-colors">
                   About
                 </a>
-                <a href="#performance" className="text-primary-900 hover:text-accent-600 font-medium transition-colors">
-                  Performance
-                </a>
                 <a href="#brand-presence" className="text-primary-900 hover:text-accent-600 font-medium transition-colors">Brand Presence</a>
                 <a href="#leadership" className="text-primary-900 hover:text-accent-600 font-medium transition-colors">
                   Leadership
@@ -113,13 +110,6 @@ const Header: React.FC = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     About
-                  </a>
-                  <a 
-                    href="#performance" 
-                    className="px-4 text-primary-900 hover:text-accent-600 font-medium transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Performance
                   </a>
                   <a 
                     href="#brand-presence" 

@@ -39,8 +39,8 @@ const committeeMembers: Committee[] = [
       {
         name: 'Mr. Ajay Mishra',
         din: '07495905',
-        designation: 'Additional Director',
-        role: 'Additional Director',
+        designation: 'Director',
+        role: 'Director',
         dateOfAppointment: '01/05/2024'
       },
       {
@@ -263,7 +263,15 @@ const InvestorPortal: React.FC = () => {
     familiarizationProgram: '/pdf_links/Familarization_Programme_for_ID_19c92f5c-d18a-4fe0-86e0-cd4bf5100955.pdf',
     boardDiversityPolicy: '/pdf_links/Policy_on_Board_diversity_bea25369-2acf-49fe-9f26-251596009aef.pdf',
     codeOfConduct: '/pdf_links/Code_of_conduct_da798e77-4a6a-4ce4-9d60-cf4f05307ae7.pdf',
-    performanceEvaluationPolicy: '/pdf_links/Performance_Evaluation_Policy_964831f3-af8b-47be-8b9f-862a931ac7ef.pdf'
+    performanceEvaluationPolicy: '/pdf_links/Performance_Evaluation_Policy_964831f3-af8b-47be-8b9f-862a931ac7ef.pdf',
+    criteriaformakingpayments: '/pdf_links/CRITERIA FOR MAKING PAYMENT TO NON EXECUTIVE DIRECTOR.pdf',
+    webArchivalPolicy: '/pdf_links/WEB ARCHIVAL POLICY.pdf',
+    preservationOfDocuments: '/pdf_links/Policy  for Preservation of Documents.pdf',
+    disclosureOfKMPContact: '/pdf_links/DISCLOSURE OF CONTACT DISCLOSURE OF KMP.pdf',
+    disclosureofContactDetails: '/pdf_links/DISCLOSURE OF CONTACT DISCLOSURE OF KMP.pdf',
+    webarchivepolicy: '/pdf_links/Web_Archive_Policy_10086861_2025.pdf',
+    policyforpreventionofDocuments: 'public/pdf_links/Policy  for Preservation of Documents.pdf',
+    riskManagementPolicy: '/pdf_links/RISK MANAGEMENT POLICY.pdf',
   };
 
   const financialReports = [
@@ -296,6 +304,12 @@ const InvestorPortal: React.FC = () => {
       date: 'March 31, 2023', 
       size: '9.9 MB',
       url: pdfFiles.reportMarch2023
+    },
+    {
+      name: 'Annual Report for the Year Ended 2022-2023',
+      date: 'March 31, 2023',
+      size: '3.9 MB',
+      url: '/pdf_links/ANNUAL REPORT 2022-23.pdf'
     }
   ];
 
@@ -362,6 +376,15 @@ const InvestorPortal: React.FC = () => {
                   Dashboard
                 </button>
                 <button
+                  onClick={() => setActiveTab('corporateGovernance')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'corporateGovernance' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <FileText className="h-5 w-5 mr-3" />
+                  Corporate Governance
+                </button>
+                <button
                   onClick={() => setActiveTab('reports')}
                   className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
                     activeTab === 'reports' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
@@ -415,6 +438,24 @@ const InvestorPortal: React.FC = () => {
                   <Bell className="h-5 w-5 mr-3" />
                   Announcements
                 </button>
+                <button
+                  onClick={() => setActiveTab('votingResults')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'votingResults' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <BarChart2 className="h-5 w-5 mr-3" />
+                  Voting Results
+                </button>
+                <button
+                  onClick={() => setActiveTab('otherDocuments')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'otherDocuments' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <FileText className="h-5 w-5 mr-3" />
+                  Other Documents
+                </button>
               </div>
             </div>
           </div>
@@ -423,33 +464,7 @@ const InvestorPortal: React.FC = () => {
           <div className="lg:col-span-3">
             {activeTab === 'dashboard' && (
               <div className="space-y-6">
-                {/* Company Prospectus Section */}
-                <div className="bg-white rounded-lg shadow-md mt-6">
-                  <div className="p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Prospectus</h2>
-                    <div className="border rounded-lg p-4 hover:bg-gray-50">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
-                          <div>
-                            <h3 className="font-medium text-gray-900">Initial Public Offering Prospectus</h3>
-                            <p className="text-sm text-gray-500">Important document containing detailed information about the company's business, financial statements, and the terms of its public offering.</p>
-                          </div>
-                        </div>
-                        <a 
-                          href={pdfFiles.prospectus}
-                          className="flex items-center text-blue-600 hover:text-blue-800 ml-4"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FileText className="h-5 w-5 mr-1" />
-                          <span>View PDF</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+                {/* Company Prospectus Section - moved to new tab */}
                 {/* Notices Section */}
                 <div className="bg-white rounded-lg shadow-md">
                   <div className="p-6">
@@ -462,25 +477,59 @@ const InvestorPortal: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="bg-white rounded-lg shadow-md">
+              </div>
+            )}
+            {activeTab === 'corporateGovernance' && (
+              <div className="space-y-6">
+                {/* Corporate Governance Certificates */}
+                <div className="bg-white rounded-lg shadow-md mt-6">
                   <div className="p-6">
-                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Draft Prospectus</h2>
-                    <div className="border rounded-lg p-4 hover:bg-gray-50">
-                      <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold text-gray-900 mb-4">Corporate Governance Certificates</h2>
+                    <div className="space-y-4">
+                      <div className="border rounded-lg p-4 hover:bg-gray-50 flex items-center justify-between">
                         <div className="flex items-center">
                           <FileText className="h-6 w-6 text-gray-400 mr-3" />
                           <div>
-                            <h3 className="font-medium text-gray-900">Draft Red Herring Prospectus</h3>
-                            <p className="text-sm text-gray-500">Preliminary document filed before the IPO, containing most of the information about the company's business and financials.</p>
+                            <h3 className="font-medium text-gray-900">Certificate for Non-Applicability of Corporate Governance Provisions under SEBI regulations 2015 for the quarter ended on JANUARY 13, 2025</h3>
                           </div>
                         </div>
-                        <a 
-                          href="/pdf_links/Draft_Prospectus.pdf"
-                          className="flex items-center text-blue-600 hover:text-blue-800 ml-4"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href="/pdf_links/13.01.2025.pdf" className="flex items-center text-blue-600 hover:text-blue-800 ml-4" target="_blank" rel="noopener noreferrer">
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
+                      <div className="border rounded-lg p-4 hover:bg-gray-50 flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">Certificate for Non-Applicability of Corporate Governance Provisions under SEBI regulations, 2015 for the quarter ended on March 31, 2025</h3>
+                          </div>
+                        </div>
+                        <a href="/pdf_links/24.04.2025.pdf" className="flex items-center text-blue-600 hover:text-blue-800 ml-4" target="_blank" rel="noopener noreferrer">
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
+                      <div className="border rounded-lg p-4 hover:bg-gray-50 flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">Certificate for Non-Applicability of Corporate Governance Provisions under SEBI Regulations, 2015 for the quarter ended on SEPTEMBER 30TH, 2024</h3>
+                          </div>
+                        </div>
+                        <a href="/pdf_links/30.09.2024.pdf" className="flex items-center text-blue-600 hover:text-blue-800 ml-4" target="_blank" rel="noopener noreferrer">
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
+                      <div className="border rounded-lg p-4 hover:bg-gray-50 flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-6 w-6 text-gray-400 mr-3" />
+                          <div>
+                            <h3 className="font-medium text-gray-900">Certificate for Non-Applicability of Corporate Governance Provisions under SEBI Regulations, 2015 for the quarter ended on JANUARY 13, 2025</h3>
+                          </div>
+                        </div>
+                        <a href="/pdf_links/30.12.2024.pdf" className="flex items-center text-blue-600 hover:text-blue-800 ml-4" target="_blank" rel="noopener noreferrer">
                           <FileText className="h-5 w-5 mr-1" />
                           <span>View PDF</span>
                         </a>
@@ -1011,7 +1060,14 @@ const InvestorPortal: React.FC = () => {
                     'Familiarization Program for Independent Directors': pdfFiles.familiarizationProgram,
                     'Policy on Board Diversity': pdfFiles.boardDiversityPolicy,
                     'Code of Conduct': pdfFiles.codeOfConduct,
-                    'Performance Evaluation Policy': pdfFiles.performanceEvaluationPolicy
+                    'Performance Evaluation Policy': pdfFiles.performanceEvaluationPolicy,
+                    'Criteria for Making Payment to Non Executive Director': pdfFiles.criteriaformakingpayments,
+                    'Web Archival Policy': pdfFiles.webArchivalPolicy,
+                    'Policy for Preservation of Documents': pdfFiles.preservationOfDocuments,
+                    'Disclosure of Contact Details of KMP': pdfFiles.disclosureOfKMPContact,
+                    'Disclosure of Contact Details': pdfFiles.disclosureofContactDetails,
+                    'Policy for Prevention of Documents': pdfFiles.policyforpreventionofDocuments,
+                    'Risk Management Policy': pdfFiles.riskManagementPolicy,
                   }).map(([title, pdfUrl], index) => (
                     <div key={index} className="border rounded-lg p-4 hover:bg-gray-50">
                       <div className="flex items-center justify-between">
@@ -1180,6 +1236,169 @@ const InvestorPortal: React.FC = () => {
                         <FileText className="h-5 w-5 mr-1" /> 0.28 MB PDF
                       </a>
                     </div>
+                  </div>
+                  {/* Announcement 10: Reliance */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Corporate Announcement: Partnership with Reliance</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Kizi Apparels Ltd. announces a new partnership with Reliance to expand its retail presence.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: May 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/CORPORATE ANNOUNCEMENT_Reliance.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 11: Myntra */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Corporate Announcement: Partnership with Myntra</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Kizi Apparels Ltd. announces a new partnership with Myntra to expand its digital retail reach.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: May 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Corporate Announcment_Myntra.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 12: Intimation of Board Meeting 14-11-2024 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Intimation of Board Meeting (14-Nov-2024)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Notice regarding the Board Meeting scheduled for November 14, 2024.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: November 2024</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Intimation of Board Meeting 14-11- 2024..pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 13: Outcome of 2nd AGM KIZI */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of 2nd AGM</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">AGM</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Summary and resolutions passed at the 2nd Annual General Meeting of Kizi Apparels Ltd.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2024</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Outcome of 2nd AGM KIZI.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 14: Outcome of Board Meeting 14-11-2024 */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting (14-Nov-2024)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Summary of decisions taken at the Board Meeting held on November 14, 2024.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: November 2024</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Outcome of Board Meeting 14-11-2024..pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 15: Outcome of Board Meeting - Independent Director */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting: Independent Director</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Appointment of Independent Director as per the outcome of the Board Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2024</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Outcome of Board Meeting_INDEPENDENT DIRECTOR.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 16: Outcome of Board Meeting - Kizi Signed */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting (Signed)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Signed outcome document of the recent Board Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2024</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/outcome of board meeting_kizi signed.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {activeTab === 'votingResults' && (
+              <div className="bg-white rounded-lg shadow-md p-8 flex flex-col items-center justify-center min-h-[300px]">
+                <h2 className="text-2xl font-bold text-primary-900 mb-4">Voting Results</h2>
+                <div className="w-full max-w-xl">
+                  <div className="border rounded-lg p-6 flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-pink-50 to-pink-100 shadow hover:shadow-lg transition mb-4">
+                    <div className="flex items-center mb-4 md:mb-0">
+                      <FileText className="h-10 w-10 text-pink-400 mr-4" />
+                      <div>
+                        <h3 className="font-semibold text-lg text-gray-900">Voting Results - 27 September 2024</h3>
+                        <p className="text-sm text-gray-600">Official voting results for the meeting held on 27th September, 2024.</p>
+                      </div>
+                    </div>
+                    <a
+                      href="/pdf_links/VOTING RESULT_ 27-09-2024.pdf"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition text-sm font-semibold shadow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileText className="h-5 w-5 mr-1" /> View PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+            {activeTab === 'otherDocuments' && (
+              <div className="bg-white rounded-lg shadow-md p-8 flex flex-col items-center justify-center min-h-[300px]">
+                <h2 className="text-2xl font-bold text-primary-900 mb-4">Other Documents</h2>
+                <div className="w-full max-w-xl space-y-6">
+                  <div className="border rounded-xl p-6 flex flex-col md:flex-row items-center justify-between bg-primary-50 shadow hover:shadow-lg transition">
+                    <div className="flex items-center mb-4 md:mb-0">
+                      <FileText className="h-10 w-10 text-primary-500 mr-4" />
+                      <div>
+                        <h3 className="font-semibold text-lg text-primary-900">Memorandum of Association (MOA)</h3>
+                        <p className="text-sm text-primary-700">The Memorandum of Association of the company.</p>
+                      </div>
+                    </div>
+                    <a
+                      href="/pdf_links/MOA.pdf"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-accent-500 text-white rounded hover:bg-accent-600 transition text-sm font-semibold shadow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileText className="h-5 w-5 mr-1" /> View PDF
+                    </a>
+                  </div>
+                  <div className="border rounded-xl p-6 flex flex-col md:flex-row items-center justify-between bg-primary-50 shadow hover:shadow-lg transition">
+                    <div className="flex items-center mb-4 md:mb-0">
+                      <FileText className="h-10 w-10 text-primary-500 mr-4" />
+                      <div>
+                        <h3 className="font-semibold text-lg text-primary-900">Articles of Association (AOA)</h3>
+                        <p className="text-sm text-primary-700">The Articles of Association of the company.</p>
+                      </div>
+                    </div>
+                    <a
+                      href="/pdf_links/AOA.pdf"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-accent-500 text-white rounded hover:bg-accent-600 transition text-sm font-semibold shadow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileText className="h-5 w-5 mr-1" /> View PDF
+                    </a>
                   </div>
                 </div>
               </div>

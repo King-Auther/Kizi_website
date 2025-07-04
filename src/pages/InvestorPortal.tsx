@@ -142,7 +142,7 @@ const committeeMembers: Committee[] = [
       {
         name: 'Mr. Ajay Mishra',
         din: '07495905',
-        designation: 'Additional Director',
+        designation: 'Director',
         role: 'Member'
       }
     ]

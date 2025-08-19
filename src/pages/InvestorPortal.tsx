@@ -272,6 +272,7 @@ const InvestorPortal: React.FC = () => {
     webarchivepolicy: '/pdf_links/Web_Archive_Policy_10086861_2025.pdf',
     policyforpreventionofDocuments: 'public/pdf_links/Policy  for Preservation of Documents.pdf',
     riskManagementPolicy: '/pdf_links/RISK MANAGEMENT POLICY.pdf',
+    AnualReport: '/pdf_links/Kizi_Annual Report_24-25.pdf',
   };
 
   const financialReports = [
@@ -310,6 +311,12 @@ const InvestorPortal: React.FC = () => {
       date: 'March 31, 2023',
       size: '3.9 MB',
       url: '/pdf_links/ANNUAL REPORT 2022-23.pdf'
+    },
+    {
+      name: 'Annual Report for the Year Ended 2024-2025',
+      date: 'March 31, 2024',
+      size: '3.9 MB',
+      url: pdfFiles.AnualReport
     }
   ];
 

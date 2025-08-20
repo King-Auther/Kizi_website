@@ -273,6 +273,7 @@ const InvestorPortal: React.FC = () => {
     policyforpreventionofDocuments: 'public/pdf_links/Policy  for Preservation of Documents.pdf',
     riskManagementPolicy: '/pdf_links/RISK MANAGEMENT POLICY.pdf',
     AnualReport: '/pdf_links/Kizi_Annual Report_24-25.pdf',
+    MGTReport: '/pdf_links/MGT_9 KIZI_2025.pdf',
   };
 
   const financialReports = [
@@ -317,6 +318,12 @@ const InvestorPortal: React.FC = () => {
       date: 'March 31, 2024',
       size: '3.9 MB',
       url: pdfFiles.AnualReport
+    },
+    {
+      name: 'MGT9',
+      date: 'March 31, 2025',
+      size: '3.9 MB',
+      url: pdfFiles.MGTReport
     }
   ];
 

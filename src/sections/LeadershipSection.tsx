@@ -3,7 +3,7 @@ import TeamMember from '../components/TeamMember';
 import abhishekImage from '../assets/ABHISHEK-PIC.jpg';
 import kiranImage from '../assets/Kiran_Nathani.png';
 import juhiImage from '../assets/JUHI.jpg';
-import avaniImage from '../assets/AVANI.jpg';
+import avaniImage from '../assets/avani.jpg';
 
 const LeadershipSection: React.FC = () => {
   const executiveTeam = [

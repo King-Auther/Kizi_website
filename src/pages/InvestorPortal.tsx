@@ -274,9 +274,16 @@ const InvestorPortal: React.FC = () => {
     riskManagementPolicy: '/pdf_links/RISK MANAGEMENT POLICY.pdf',
     AnualReport: '/pdf_links/Kizi_Annual Report_24-25.pdf',
     MGTReport: '/pdf_links/MGT_9 KIZI_2025.pdf',
+    MGT7: '/pdf_links/Annual return.pdf',
   };
 
   const financialReports = [
+    {
+      name: 'MGT7 2024-2025',
+      date: 'FY 2024-25',
+      size: '5.32 MB',
+      url: pdfFiles.MGT7
+    },
     { 
       name: 'Results for the Half Year and Year Ended 31st March, 2025',
       date: 'March 31, 2025',

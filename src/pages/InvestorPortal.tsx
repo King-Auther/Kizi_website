@@ -277,12 +277,49 @@ const InvestorPortal: React.FC = () => {
     MGT7: '/pdf_links/Annual return.pdf',
   };
 
-  const financialReports = [
+
+  const scrutinizerReports = [
     {
-      name: 'MGT7 2024-2025',
+      name: "Scrutinizer's Report - 2025",
+      date: '2025',
+      size: 'PDF',
+      url: '/pdf_links/Scrutinizer Report _2025.pdf'
+    }
+  ];
+
+  const annualReports = [
+    {
+      name: 'Annual Report for the Year Ended 2024-2025',
+      date: 'March 31, 2025',
+      size: 'PDF',
+      url: pdfFiles.AnualReport
+    },
+    {
+      name: 'Annual Report for the Year Ended 2023-2024',
+      date: 'March 31, 2024',
+      size: 'PDF',
+      url: '/pdf_links/ANNUAL_REPORT_KIZI_31.03.2024.pdf'
+    },
+    {
+      name: 'Annual Report for the Year Ended 2022-2023',
+      date: 'March 31, 2023',
+      size: 'PDF',
+      url: '/pdf_links/ANNUAL REPORT 2022-23.pdf'
+    }
+  ];
+
+  const annualReturns = [
+    {
+      name: 'MGT-7 Annual Return 2024-2025',
       date: 'FY 2024-25',
-      size: '5.32 MB',
+      size: 'PDF',
       url: pdfFiles.MGT7
+    },
+    {
+      name: 'MGT-9 Annual Return Extract',
+      date: 'March 31, 2025',
+      size: 'PDF',
+      url: pdfFiles.MGTReport
     },
     { 
       name: 'Results for the Half Year and Year Ended 31st March, 2025',
@@ -297,12 +334,6 @@ const InvestorPortal: React.FC = () => {
       url: pdfFiles.reportSep2024
     },
     { 
-      name: 'Annual Report for the Year Ended 2023-2024',
-      date: 'March 31, 2024', 
-      size: '3.1 MB',
-      url: pdfFiles.reportMarch2024
-    },
-    { 
       name: 'For The Period Ended 30 June, 2023', 
       date: 'June 30, 2023', 
       size: '20 MB',
@@ -313,39 +344,6 @@ const InvestorPortal: React.FC = () => {
       date: 'March 31, 2023', 
       size: '9.9 MB',
       url: pdfFiles.reportMarch2023
-    },
-    {
-      name: 'Annual Report for the Year Ended 2022-2023',
-      date: 'March 31, 2023',
-      size: '3.9 MB',
-      url: '/pdf_links/ANNUAL REPORT 2022-23.pdf'
-    },
-    {
-      name: 'Annual Report for the Year Ended 2024-2025',
-      date: 'March 31, 2024',
-      size: '3.9 MB',
-      url: pdfFiles.AnualReport
-    },
-    {
-      name: 'MGT9',
-      date: 'March 31, 2025',
-      size: '3.9 MB',
-      url: pdfFiles.MGTReport
-    }
-  ];
-
-  const scrutinizerReports = [
-    {
-      name: "Scrutinizer's Report - 2025",
-      date: '2025',
-      size: 'PDF',
-      url: '/pdf_links/Scrutinizer Report _2025.pdf'
-    },
-    {
-      name: "Scrutinizer's Report - 27 September 2024",
-      date: 'September 27, 2024',
-      size: 'PDF',
-      url: '/pdf_links/VOTING RESULT_ 27-09-2024.pdf'
     }
   ];
 
@@ -421,13 +419,22 @@ const InvestorPortal: React.FC = () => {
                   Corporate Governance
                 </button>
                 <button
-                  onClick={() => setActiveTab('reports')}
+                  onClick={() => setActiveTab('annualReport')}
                   className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
-                    activeTab === 'reports' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                    activeTab === 'annualReport' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
                   }`}
                 >
                   <FileText className="h-5 w-5 mr-3" />
-                  Financial Reports
+                  Annual Report
+                </button>
+                <button
+                  onClick={() => setActiveTab('annualReturn')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'annualReturn' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <FileText className="h-5 w-5 mr-3" />
+                  Annual Return
                 </button>
                 <button
                   onClick={() => setActiveTab('shareholding')}
@@ -584,12 +591,43 @@ const InvestorPortal: React.FC = () => {
                 </div>
               </div>
             )}
-            {activeTab === 'reports' && (
+
+            {activeTab === 'annualReport' && (
               <div className="bg-white rounded-lg shadow-md">
                 <div className="p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Financial Reports</h2>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Annual Report</h2>
                   <div className="space-y-4">
-                    {financialReports.map((report, index) => (
+                    {annualReports.map((report, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">{report.name}</p>
+                            <p className="text-sm text-gray-500">Published: {report.date}</p>
+                          </div>
+                        </div>
+                        <a 
+                          href={report.url}
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'annualReturn' && (
+              <div className="bg-white rounded-lg shadow-md">
+                <div className="p-6">
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Annual Return</h2>
+                  <div className="space-y-4">
+                    {annualReturns.map((report, index) => (
                       <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
                         <div className="flex items-center">
                           <FileText className="h-5 w-5 text-gray-400 mr-3" />

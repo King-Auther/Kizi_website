@@ -334,6 +334,21 @@ const InvestorPortal: React.FC = () => {
     }
   ];
 
+  const scrutinizerReports = [
+    {
+      name: "Scrutinizer's Report - 2025",
+      date: '2025',
+      size: 'PDF',
+      url: '/pdf_links/Scrutinizer Report _2025.pdf'
+    },
+    {
+      name: "Scrutinizer's Report - 27 September 2024",
+      date: 'September 27, 2024',
+      size: 'PDF',
+      url: '/pdf_links/VOTING RESULT_ 27-09-2024.pdf'
+    }
+  ];
+
   const handleAddEvent = () => {
     if (!selectedDate || !newEvent.name) return;
     setEvents(prev => ([
@@ -467,6 +482,15 @@ const InvestorPortal: React.FC = () => {
                 >
                   <BarChart2 className="h-5 w-5 mr-3" />
                   Voting Results
+                </button>
+                <button
+                  onClick={() => setActiveTab('scrutinizerReport')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'scrutinizerReport' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <FileText className="h-5 w-5 mr-3" />
+                  Scrutinizer Report
                 </button>
                 <button
                   onClick={() => setActiveTab('otherDocuments')}
@@ -1380,6 +1404,54 @@ const InvestorPortal: React.FC = () => {
                       <FileText className="h-5 w-5 mr-1" /> View PDF
                     </a>
                   </div>
+                  <div className="border rounded-lg p-6 flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-pink-50 to-pink-100 shadow hover:shadow-lg transition">
+                    <div className="flex items-center mb-4 md:mb-0">
+                      <FileText className="h-10 w-10 text-pink-400 mr-4" />
+                      <div>
+                        <h3 className="font-semibold text-lg text-gray-900">E-voting Scrutinizer Report - 2025</h3>
+                        <p className="text-sm text-gray-600">Scrutinizer's consolidated e-voting report for the year 2025.</p>
+                      </div>
+                    </div>
+                    <a
+                      href="/pdf_links/E-voting Scrutinizer Report_2025.pdf"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 transition text-sm font-semibold shadow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileText className="h-5 w-5 mr-1" /> View PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+            {activeTab === 'scrutinizerReport' && (
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">Scrutinizer Report</h2>
+                <div className="space-y-4">
+                  {scrutinizerReports.length === 0 ? (
+                    <div className="border rounded-lg p-8 text-center text-gray-600">No Scrutinizer Reports available yet</div>
+                  ) : (
+                    scrutinizerReports.map((report, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">{report.name}</p>
+                            <p className="text-sm text-gray-500">Published: {report.date}</p>
+                          </div>
+                        </div>
+                        <a 
+                          href={report.url}
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FileText className="h-5 w-5 mr-1" />
+                          <span>View PDF</span>
+                        </a>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             )}

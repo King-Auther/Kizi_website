@@ -274,16 +274,16 @@ const InvestorPortal: React.FC = () => {
     riskManagementPolicy: '/pdf_links/RISK MANAGEMENT POLICY.pdf',
     AnualReport: '/pdf_links/Kizi_Annual Report_24-25.pdf',
     MGTReport: '/pdf_links/MGT_9 KIZI_2025.pdf',
-    MGT7: '/pdf_links/Annual return.pdf',
+    MGT7: '/pdf_links/MGT-7_2024-25 new.pdf',
   };
 
 
-  const scrutinizerReports = [
+  const scrutinizerReports: { name: string; date: string; size: string; url: string }[] = [
     {
-      name: "Scrutinizer's Report - 2025",
+      name: "E-voting Scrutinizer Report - 2025",
       date: '2025',
       size: 'PDF',
-      url: '/pdf_links/Scrutinizer Report _2025.pdf'
+      url: '/pdf_links/E-voting Scrutinizer Report_2025.pdf'
     }
   ];
 

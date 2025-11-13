@@ -1222,6 +1222,20 @@ const InvestorPortal: React.FC = () => {
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Announcements</h2>
                 <div className="space-y-6">
+                  {/* Announcement: Outcome of Board Meeting */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting (14-Nov-2024)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Summary of resolutions and key decisions from the latest meeting of the Board of Directors.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/OUTCOME OF BOARD MEETING.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
                   {/* Announcement 1 */}
                   <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">

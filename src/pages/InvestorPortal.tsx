@@ -1595,6 +1595,23 @@ const InvestorPortal: React.FC = () => {
                       <FileText className="h-5 w-5 mr-1" /> View PDF
                     </a>
                   </div>
+                  <div className="border rounded-xl p-6 flex flex-col md:flex-row items-center justify-between bg-primary-50 shadow hover:shadow-lg transition">
+                    <div className="flex items-center mb-4 md:mb-0">
+                      <FileText className="h-10 w-10 text-primary-500 mr-4" />
+                      <div>
+                        <h3 className="font-semibold text-lg text-primary-900">Valuation Report</h3>
+                        <p className="text-sm text-primary-700">Independent valuation report.</p>
+                      </div>
+                    </div>
+                    <a
+                      href="/pdf_links/Valuation Report.pdf"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-accent-500 text-white rounded hover:bg-accent-600 transition text-sm font-semibold shadow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FileText className="h-5 w-5 mr-1" /> View PDF
+                    </a>
+                  </div>
                 </div>
               </div>
             )}

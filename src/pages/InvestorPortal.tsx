@@ -284,6 +284,12 @@ const InvestorPortal: React.FC = () => {
       date: '2025',
       size: 'PDF',
       url: '/pdf_links/E-voting Scrutinizer Report_2025.pdf'
+    },
+    {
+      name: "Scrutiniser Report E-Voting",
+      date: '2025',
+      size: 'PDF',
+      url: '/pdf_links/Scrutiniser Report E-Voting_.pdf'
     }
   ];
 
@@ -1437,6 +1443,25 @@ const InvestorPortal: React.FC = () => {
                     <div className="text-xs text-gray-500 mb-2">Published: 2024</div>
                     <div className="flex items-center gap-4">
                       <a href="/pdf_links/outcome of board meeting_kizi signed.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 17: Proceedings of EGM */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Proceedings of Extraordinary General Meeting (EGM)</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">EGM</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Detailed proceedings of the Extraordinary General Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a
+                        href="/pdf_links/Proceedings of EGM.pdf"
+                        className="flex items-center text-red-600 hover:underline text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <FileText className="h-5 w-5 mr-1" /> View PDF
                       </a>
                     </div>

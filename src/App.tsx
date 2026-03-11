@@ -27,12 +27,14 @@ function App() {
     <Router>
       <div className="min-h-screen bg-white">
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/investor-portal" element={<InvestorPortal />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <main className="pt-24">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/investor-portal" element={<InvestorPortal />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>

@@ -395,7 +395,7 @@ const InvestorPortal: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar */}
@@ -522,6 +522,15 @@ const InvestorPortal: React.FC = () => {
                 >
                   <FileText className="h-5 w-5 mr-3" />
                   Other Documents
+                </button>
+                <button
+                  onClick={() => setActiveTab('newspaperPublication')}
+                  className={`w-full text-left px-4 py-2 rounded-md flex items-center ${
+                    activeTab === 'newspaperPublication' ? 'bg-primary-50 text-primary-900' : 'hover:bg-gray-50'
+                  }`}
+                >
+                  <FileText className="h-5 w-5 mr-3" />
+                  Newspaper Publication
                 </button>
               </div>
             </div>
@@ -674,7 +683,7 @@ const InvestorPortal: React.FC = () => {
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-xl font-semibold text-gray-900">Shareholding Pattern</h2>
                       <a
-                        href="/shareholding_exl/shareholding_exl/SHAREHOLDING_PATTERN_AS_ON_31.12.2024.pdf"
+                        href="/pdf_links/SHAREHOLDING_PATTERN_AS_ON_31.12.2025.pdf"
                         className="flex items-center text-blue-600 hover:text-blue-800 text-xs font-semibold"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -846,6 +855,86 @@ const InvestorPortal: React.FC = () => {
                   <div className="p-6">
                     <h2 className="text-xl font-semibold text-gray-900 mb-4">Historical Shareholding Pattern</h2>
                     <div className="space-y-4">
+                      <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">Shareholding Pattern as on December 31, 2025</p>
+                            <p className="text-sm text-gray-500">Published: December 31, 2025</p>
+                          </div>
+                        </div>
+                        <a
+                          href="/pdf_links/SHAREHOLDING_PATTERN_AS_ON_31.12.2025.pdf"
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          type="application/pdf"
+                        >
+                          <Download className="h-5 w-5 mr-1" />
+                          <span>Download PDF</span>
+                        </a>
+                      </div>
+                      <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">Shareholding Pattern as on September 30, 2025</p>
+                            <p className="text-sm text-gray-500">Published: September 30, 2025</p>
+                          </div>
+                        </div>
+                        <a
+                          href="/pdf_links/SHAREHOLDING_PATTERN_AS_ON_30.09.2025.pdf"
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          type="application/pdf"
+                        >
+                          <Download className="h-5 w-5 mr-1" />
+                          <span>Download PDF</span>
+                        </a>
+                      </div>
+                      <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">Shareholding Pattern as on June 30, 2025</p>
+                            <p className="text-sm text-gray-500">Published: June 30, 2025</p>
+                          </div>
+                        </div>
+                        <a
+                          href="/pdf_links/SHAREHOLDING_PATTERN_AS_ON_30.06.2025.pdf"
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          type="application/pdf"
+                        >
+                          <Download className="h-5 w-5 mr-1" />
+                          <span>Download PDF</span>
+                        </a>
+                      </div>
+                      <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                        <div className="flex items-center">
+                          <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                          <div>
+                            <p className="font-medium text-gray-900">Shareholding Pattern as on March 31, 2025</p>
+                            <p className="text-sm text-gray-500">Published: March 31, 2025</p>
+                          </div>
+                        </div>
+                        <a
+                          href="/pdf_links/SHAREHOLDING_PATTERN_AS_ON_31.03.2025.pdf"
+                          className="flex items-center text-blue-600 hover:text-blue-800"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download
+                          type="application/pdf"
+                        >
+                          <Download className="h-5 w-5 mr-1" />
+                          <span>Download PDF</span>
+                        </a>
+                      </div>
                       <div className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
                         <div className="flex items-center">
                           <FileText className="h-5 w-5 text-gray-400 mr-3" />
@@ -1466,6 +1555,82 @@ const InvestorPortal: React.FC = () => {
                       </a>
                     </div>
                   </div>
+                  {/* Announcement 18: General Announcement */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">General Announcement</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">General announcement issued by the company.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a
+                        href="/pdf_links/GENERAL ANNOUNCEMENT.pdf"
+                        className="flex items-center text-red-600 hover:underline text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 19: Outcome of EGM */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Extraordinary General Meeting (EGM)</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">EGM</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Official outcome of the Extraordinary General Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a
+                        href="/pdf_links/OUTCOME OF EGM.pdf"
+                        className="flex items-center text-red-600 hover:underline text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 20: Intimation of Board Meeting */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Intimation of Board Meeting</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Notice regarding the scheduled Board Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a
+                        href="/pdf_links/Intimation of Board Meeting.pdf"
+                        className="flex items-center text-red-600 hover:underline text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  {/* Announcement 21: Intimation to BSE */}
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Intimation to BSE</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Intimation filed with the stock exchange (BSE).</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2025</div>
+                    <div className="flex items-center gap-4">
+                      <a
+                        href="/pdf_links/Intimation to BSE.pdf"
+                        className="flex items-center text-red-600 hover:underline text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -1637,6 +1802,44 @@ const InvestorPortal: React.FC = () => {
                       <FileText className="h-5 w-5 mr-1" /> View PDF
                     </a>
                   </div>
+                </div>
+              </div>
+            )}
+            {activeTab === 'newspaperPublication' && (
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">Newspaper Publication</h2>
+                <div className="space-y-4">
+                  {[
+                    {
+                      name: 'Post Intimation with Advertisement (Signed)',
+                      date: 'Aug 21, 2025',
+                      url: '/pdf_links/POST INTIMATION WITH ADVERTISEMENT_SIGNED_21082025.pdf'
+                    },
+                    {
+                      name: 'Pre Newspaper Advertisement - Kizi',
+                      date: '2025',
+                      url: '/pdf_links/PRE NEWSPAPER ADVERTISEMENT_KIZI.pdf'
+                    }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg border">
+                      <div className="flex items-center">
+                        <FileText className="h-5 w-5 text-gray-400 mr-3" />
+                        <div>
+                          <p className="font-medium text-gray-900">{item.name}</p>
+                          <p className="text-sm text-gray-500">Published: {item.date}</p>
+                        </div>
+                      </div>
+                      <a
+                        href={item.url}
+                        className="flex items-center text-blue-600 hover:text-blue-800"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="h-5 w-5 mr-1" />
+                        <span>View PDF</span>
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}

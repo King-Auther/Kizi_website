@@ -1,0 +1,68 @@
+/* Custom styles for react-calendar in the Investor Portal */
+
+.rcal-root {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1rem;
+}
+
+.react-calendar {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.react-calendar__tile {
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+  padding: 0.5em 0.2em;
+  position: relative;
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--now {
+  background: #e678a4 !important;
+  color: #fff !important;
+}
+
+.react-calendar__tile--hasActive {
+  background: #fbeaf3;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #fbeaf3;
+  color: #e678a4;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #e678a4;
+}
+
+.rcal-today {
+  border: 2px solid #e678a4 !important;
+  border-radius: 0.5rem;
+}
+
+.rcal-selected {
+  background: #e678a4 !important;
+  color: #fff !important;
+}
+
+/* Tooltip for event names */
+.group:hover .group-hover\:block {
+  display: block !important;
+}
+
+/* Hide default calendar navigation arrows */
+.react-calendar__navigation__arrow {
+  color: #e678a4;
+}
+
+.react-calendar__navigation__label {
+  font-weight: 600;
+  color: #22223b;
+} 

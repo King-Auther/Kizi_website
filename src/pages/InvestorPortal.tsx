@@ -26,35 +26,35 @@ const committeeMembers: Committee[] = [
         name: 'Ms. Kiran Nathani',
         din: '10086860',
         designation: 'Executive Director & CFO',
-        role: 'Director',
+        role: 'Member',
         dateOfAppointment: '24/03/2023'
       },
       {
         name: 'Mr. Abhishek Nathani',
         din: '10086861',
         designation: 'Non-Executive and Independent Director',
-        role: 'Managing Director',
+        role: 'Member',
         dateOfAppointment: '24/03/2023'
       },
       {
         name: 'Mr. Ajay Mishra',
         din: '07495905',
         designation: 'Non-Executive Director',
-        role: 'Director',
+        role: 'Chairman',
         dateOfAppointment: '01/05/2024'
       },
       {
         name: 'Ms. Juhi Sawajani',
         din: '09811893',
-        designation: 'Non-Executive and Independent Director',
-        role: 'Director',
+        designation: 'Non-Executive Director',
+        role: 'Chairman',
         dateOfAppointment: '24/06/2023'
       },
       {
         name: 'Ms. Avani Ashwinkumar Shah',
         din: '09608898',
         designation: 'Non-Executive and Independent Director',
-        role: 'Director',
+        role: 'Member',
         dateOfAppointment: '24/06/2023'
       }
     ]
@@ -66,7 +66,7 @@ const committeeMembers: Committee[] = [
         name: 'Ms. Kiran Nathani',
         din: 'BTZPS1682R',
         designation: 'Executive Director & CFO',
-        role: 'CFO',
+        role: 'Member',
         dateOfAppointment: '05/07/2023'
       },
       {
@@ -105,20 +105,20 @@ const committeeMembers: Committee[] = [
     name: 'Stakeholders Relationship Committee',
     members: [
       {
-        name: 'Ms. Juhi Sawajani',
-        din: '09811893',
+        name: 'Mr. Ajay Mishra',
+        din: '07495905',
         designation: 'Non-Executive Director',
         role: 'Chairman'
       },
       {
-        name: 'Ms. Avani Ashwinkumar Shah',
-        din: '09608898',
-        designation: 'Non-Executive and CFO',
+        name: 'Ms. Kiran Nathani',
+        din: '10086860',
+        designation: 'Executive Director & CFO',
         role: 'Member'
       },
       {
-        name: 'Mr. Abhishek Nathani',
-        din: '10086861',
+        name: 'Ms. Avani Ashwinkumar Shah',
+        din: '09608898',
         designation: 'Non-Executive and Independent Director',
         role: 'Member'
       }
@@ -143,7 +143,7 @@ const committeeMembers: Committee[] = [
         name: 'Mr. Ajay Mishra',
         din: '07495905',
         designation: 'Non-Executive Director',
-        role: 'Member'
+        role: 'Chairman' 
       }
     ]
   }
@@ -159,7 +159,7 @@ const formatDate = (date: Date) => {
 
 const InvestorPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [calendarDate, setCalendarDate] = useState<Date>(new Date());
   const isAdmin = false; // Set to true to allow adding events
@@ -368,20 +368,7 @@ const InvestorPortal: React.FC = () => {
     setShowEventModal(false);
   };
 
-  useEffect(() => {
-    const loadContent = async () => {
-      try {
-        setLoading(true);
-        // Simulate loading content
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setLoading(false);
-      } catch {
-        setError('Failed to load content. Please try again later.');
-        setLoading(false);
-      }
-    };
-    loadContent();
-  }, [activeTab]);
+  // Committee members and portal content are static in this file — no fetch on tab change.
 
   if (loading) {
     return (

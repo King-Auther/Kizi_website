@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FileText, Download, Calendar, Bell, BarChart2, Plus, Home } from 'lucide-react';
 import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import './InvestorCalendar.css'; // Custom styles for react-calendar
+import './InvestorCalendar.css';
 import logo from '../assets/kizi_logo.jpeg';
 
 interface CommitteeMember {
@@ -159,8 +159,6 @@ const formatDate = (date: Date) => {
 
 const InvestorPortal: React.FC = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [calendarDate, setCalendarDate] = useState<Date>(new Date());
   const isAdmin = false; // Set to true to allow adding events
 
@@ -278,6 +276,7 @@ const InvestorPortal: React.FC = () => {
     policyforpreventionofDocuments: 'public/pdf_links/Policy  for Preservation of Documents.pdf',
     riskManagementPolicy: '/pdf_links/RISK MANAGEMENT POLICY.pdf',
     AnualReport: '/pdf_links/Kizi_Annual Report_24-25.pdf',
+    annualReportKizi: '/pdf_links/Annual Report_KIZI_.pdf',
     MGTReport: '/pdf_links/MGT_9 KIZI_2025.pdf',
     MGT7: '/pdf_links/MGT-7_2024-25 new.pdf',
   };
@@ -299,6 +298,12 @@ const InvestorPortal: React.FC = () => {
   ];
 
   const annualReports = [
+    {
+      name: 'Annual Report KIZI',
+      date: 'March 31, 2026',
+      size: 'PDF',
+      url: pdfFiles.annualReportKizi
+    },
     {
       name: 'Annual Report for the Year Ended 2024-2025',
       date: 'March 31, 2025',
@@ -367,24 +372,6 @@ const InvestorPortal: React.FC = () => {
     setNewEvent({ name: '', attachment: '' });
     setShowEventModal(false);
   };
-
-  // Committee members and portal content are static in this file — no fetch on tab change.
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-gray-600">Loading...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-red-600">{error}</div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">

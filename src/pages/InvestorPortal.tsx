@@ -299,7 +299,7 @@ const InvestorPortal: React.FC = () => {
 
   const annualReports = [
     {
-      name: 'Annual Report KIZI',
+      name: 'Annual Report for the year Ended 2025-2026',
       date: 'March 31, 2026',
       size: 'PDF',
       url: pdfFiles.annualReportKizi

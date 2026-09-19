@@ -294,6 +294,12 @@ const InvestorPortal: React.FC = () => {
       date: '2025',
       size: 'PDF',
       url: '/pdf_links/Scrutiniser Report E-Voting_.pdf'
+    },
+    {
+      name: "Scrutiniser Report E-Voting - 2026",
+      date: '2026',
+      size: 'PDF',
+      url: 'public/pdf_links/Scrutiniser report._SD.pdf'
     }
   ];
 

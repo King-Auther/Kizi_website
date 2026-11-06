@@ -1645,6 +1645,23 @@ const InvestorPortal: React.FC = () => {
                     <div className="text-gray-700 mb-2">Official notice from Kizi Apparels Ltd.</div>
                     <div className="flex items-center gap-4">
                       <a
+                        href="/pdf_links/NOTICE 11111- KIZI.pdf"
+                        className="flex items-center text-red-600 hover:underline text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Notice - KIZI</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Notice</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Official notice from Kizi Apparels Ltd.</div>
+                    <div className="flex items-center gap-4">
+                      <a
                         href="/pdf_links/NOTICE - KIZI.pdf"
                         className="flex items-center text-red-600 hover:underline text-sm"
                         target="_blank"
@@ -1809,6 +1826,11 @@ const InvestorPortal: React.FC = () => {
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">Newspaper Publication</h2>
                 <div className="space-y-4">
                   {[
+                    {
+                      name: 'Newspaper Publication',
+                      date: 'Nov 6, 2026',
+                      url: '/pdf_links/Newspaper Publication_sd_.pdf'
+                    },
                     {
                       name: 'Post Intimation with Advertisement (Signed)',
                       date: 'Aug 21, 2025',

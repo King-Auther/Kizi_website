@@ -264,6 +264,7 @@ const InvestorPortal: React.FC = () => {
     relatedPartyTransactionPolicy: '/pdf_links/Related_Party_Transaction_Policy_2ebc94d8-4f02-48d9-8055-f709eb3f05da.pdf',
     upsiDisclosurePolicy: '/pdf_links/Policy_on_Disclosure_of_UPSI_959006c6-f462-4347-9e10-062e13373845.pdf',
     familiarizationProgram: '/pdf_links/Familarization_Programme_for_ID_19c92f5c-d18a-4fe0-86e0-cd4bf5100955.pdf',
+    familiarizationProgramNew: '/pdf_links/Familiarization Program.pdf',
     boardDiversityPolicy: '/pdf_links/Policy_on_Board_diversity_bea25369-2acf-49fe-9f26-251596009aef.pdf',
     codeOfConduct: '/pdf_links/Code_of_conduct_da798e77-4a6a-4ce4-9d60-cf4f05307ae7.pdf',
     performanceEvaluationPolicy: '/pdf_links/Performance_Evaluation_Policy_964831f3-af8b-47be-8b9f-862a931ac7ef.pdf',
@@ -1230,6 +1231,7 @@ const InvestorPortal: React.FC = () => {
                     'Related Party Transaction Policy': pdfFiles.relatedPartyTransactionPolicy,
                     'Policy on Disclosure of UPSI': pdfFiles.upsiDisclosurePolicy,
                     'Familiarization Program for Independent Directors': pdfFiles.familiarizationProgram,
+                    'Familiarization Program': pdfFiles.familiarizationProgramNew,
                     'Policy on Board Diversity': pdfFiles.boardDiversityPolicy,
                     'Code of Conduct': pdfFiles.codeOfConduct,
                     'Performance Evaluation Policy': pdfFiles.performanceEvaluationPolicy,
@@ -1311,6 +1313,97 @@ const InvestorPortal: React.FC = () => {
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">Announcements</h2>
                 <div className="space-y-6">
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting (30-Sep-2026)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Outcome of the Board Meeting held on September 30, 2026.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: September 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Outcome of Board Meeting_sd_30.09.2026.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Intimation of Board Meeting (30-Sep-2026)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Notice regarding the Board Meeting dated September 30, 2026.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: September 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Intimation of Board Meeting_Sd_30.09.2026.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting (11-May-2026) - Additional</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Additional outcome document of the Board Meeting held on May 11, 2026.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: May 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Outcome of Board Meeting_11052026_SD (2).pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Notice of Board Meeting (March 2026)</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Notice of the Board Meeting scheduled for March 2026.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: March 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Notice of Board Meeting_March_26.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Notice of Board Meeting</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Notice of the Board Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Notice of Board Meeting_.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting</span>
+                      <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Outcome of the Board Meeting.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/OUTCOME OF BOARD MEETING (2).pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Non Applicability of Annual Secretarial Compliance Report</span>
+                      <span className="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Company Update</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Intimation regarding non-applicability of the Annual Secretarial Compliance Report.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Non Applicability Of Annual Secretarial Compliance Report.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
                   {/* Announcement: Outcome of Board Meeting (11-May-2026) */}
                   <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">

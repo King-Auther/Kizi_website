@@ -1315,6 +1315,32 @@ const InvestorPortal: React.FC = () => {
                 <div className="space-y-6">
                   <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">EGM Notice</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">EGM</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Notice of the Extraordinary General Meeting of Kizi Apparels Ltd.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: November 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/KIZI_EGM NOTICE.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                      <span className="font-bold text-primary-900 text-lg">Corrigendum to Notice</span>
+                      <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Notice</span>
+                    </div>
+                    <div className="text-gray-700 mb-2">Corrigendum to the earlier issued notice.</div>
+                    <div className="text-xs text-gray-500 mb-2">Published: November 2026</div>
+                    <div className="flex items-center gap-4">
+                      <a href="/pdf_links/Corrigendum to Notice.pdf" className="flex items-center text-red-600 hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                        <FileText className="h-5 w-5 mr-1" /> View PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow hover:bg-gray-50 transition">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
                       <span className="font-bold text-primary-900 text-lg">Outcome of Board Meeting (30-Sep-2026)</span>
                       <span className="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Board Meeting</span>
                     </div>
